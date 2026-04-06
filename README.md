@@ -107,12 +107,6 @@ The Resume Analyzer is the core module that processes resumes and evaluates them
 
 ---
 
-### 🧠 Resume Analyzer
-This feature improves resume content by converting weak bullet points into strong, action-oriented statements with better clarity and impact.
-
-![Bullet Rewriter](./assests/img4.png)
-
----
 
 ### 🧾 AI Bullet Point Rewriter
 The builder allows users to create structured, ATS-friendly resumes by entering their details in a guided format.
