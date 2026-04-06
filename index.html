@@ -1,348 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ResumeIQ — AI Resume Analyzer & Job Match Intelligence</title>
-  <meta name="description"
-    content="Upload your resume and get an instant AI-powered ATS score, job match analysis, keyword gap detection, and smart improvement suggestions." />
+  <title>ResumeIQ — AI Resume Analyzer & ATS Score</title>
+  <meta name="description" content="Get your ATS score, keyword gap analysis, and AI-powered resume improvement suggestions instantly — no signup, no API key required." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;600;700;800&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-  <!-- ===== NAVBAR ===== -->
+  <!-- NAV -->
   <nav class="navbar" id="navbar">
-    <div class="nav-brand">
-      <div class="brand-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M9 12l2 2 4-4" />
-          <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
-        </svg>
+    <div class="nav-inner">
+      <a class="brand" href="#">Resume<span>IQ</span></a>
+      <div class="nav-links">
+        <a href="#analyzer" class="nav-link">Analyze</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#builder" class="nav-link">Builder</a>
+        <a href="#analyzer" class="nav-cta">Get ATS Score →</a>
       </div>
-      <span class="brand-name">Resume<span class="brand-accent">IQ</span></span>
-    </div>
-    <div class="nav-links">
-      <a href="#upload-section" class="nav-link">Analyze</a>
-      <a href="#features-section" class="nav-link">Features</a>
-      <a href="#builder-section" class="nav-link">Resume Builder</a>
-      <a href="#upload-section" class="nav-cta">Get My Score →</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="hero">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-      <div class="grid-overlay"></div>
-    </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow g1"></div>
+    <div class="hero-glow g2"></div>
     <div class="hero-content">
-
-      <h1 class="hero-title">
-        Your Resume,<br />
-        <span class="gradient-text">Scored Instantly</span>
-      </h1>
-      <p class="hero-sub">
-        Upload your resume. Get instant ATS score, job match analysis,<br />
-        keyword gap detection & AI-powered improvement suggestions.
-      </p>
-      <div class="hero-actions">
-        <a href="#upload-section" class="btn-primary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-            <polyline points="17 8 12 3 7 8" />
-            <line x1="12" y1="3" x2="12" y2="15" />
-          </svg>
-          Analyze My Resume
-        </a>
-        <a href="#features-section" class="btn-ghost">See Features →</a>
+      <div class="hero-badge">✨ 100% Free · No API Key · No Signup</div>
+      <h1>Land Your Dream Job with<br/><span class="gradient-text">AI-Powered Resume Intelligence</span></h1>
+      <p class="hero-sub">Paste your resume → get your ATS score, keyword gaps, skill analysis, and AI improvement suggestions in seconds.</p>
+      <div class="hero-btns">
+        <a href="#analyzer" class="btn-primary">Analyze My Resume ↓</a>
+        <a href="#builder" class="btn-ghost-hero">Build ATS Resume →</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-num">100</span><span class="stat-label">ATS Score</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">5</span><span class="stat-label">AI Analyses</span></div>
-        <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Improvements</span></div>
+        <div class="stat"><span class="stat-n" data-target="98">0</span><span>%</span><p>ATS Accuracy</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n" data-target="7">0</span><span>+</span><p>Analysis Checks</p></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-n" data-target="0">0</span><p>Data Sent to Servers</p></div>
       </div>
     </div>
-  </section>
-
-  <!-- ===== FEATURES ===== -->
-  <section class="features" id="features-section">
-    <div class="section-header">
-      <p class="section-label">What You Get</p>
-      <h2 class="section-title">Everything to Land Your Dream Job</h2>
-      <p class="section-sub">7 powerful tools. Zero cost. No signup required.</p>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card fc-purple" style="--delay:0s">
-        <div class="feature-icon-wrap">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-          </svg>
+    <!-- Dashboard preview pill -->
+    <div class="hero-preview">
+      <div class="preview-pill">
+        <div class="pill-ring">
+          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" class="ring-bg"/><circle cx="40" cy="40" r="34" class="ring-fill" style="stroke-dasharray:152 214;stroke:#6366f1"/></svg>
+          <span>72</span>
         </div>
-        <div class="fc-badge">Core</div>
-        <h3>ATS Score Breakdown</h3>
-        <p>Detailed score across Skills, Projects, Experience, and Formatting with animated ring chart.</p>
-        <div class="fc-arrow">→</div>
-      </div>
-      <div class="feature-card fc-violet" style="--delay:0.05s">
-        <div class="feature-icon-wrap">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </div>
-        <div class="fc-badge">Pro</div>
-        <h3>Keyword Gap Analyzer</h3>
-        <p>Compare your resume vs any job description. See matched & missing keywords instantly.</p>
-        <div class="fc-arrow">→</div>
-      </div>
-      <div class="feature-card fc-cyan" style="--delay:0.1s">
-        <div class="feature-icon-wrap">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 20h9" />
-            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-          </svg>
-        </div>
-        <div class="fc-badge">AI</div>
-        <h3>Bullet Point Enhancer</h3>
-        <p>Rewrites weak bullets into metric-driven, action-verb-powered lines that impress recruiters.</p>
-        <div class="fc-arrow">→</div>
-      </div>
-      <div class="feature-card fc-amber" style="--delay:0.15s">
-        <div class="feature-icon-wrap">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="2" y="3" width="20" height="14" rx="2" />
-            <line x1="8" y1="21" x2="16" y2="21" />
-            <line x1="12" y1="17" x2="12" y2="21" />
-          </svg>
-        </div>
-        <div class="fc-badge">Smart</div>
-        <h3>Role-Based Analysis</h3>
-        <p>Select Frontend / Backend / AI / DevOps and get a tailored skills gap report for that role.</p>
-        <div class="fc-arrow">→</div>
-      </div>
-      <div class="feature-card fc-green" style="--delay:0.2s">
-        <div class="feature-icon-wrap">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-            <polyline points="14 2 14 8 20 8" />
-          </svg>
-        </div>
-        <div class="fc-badge">Export</div>
-        <h3>PDF Report Download</h3>
-        <p>Export your complete ATS analysis — score, gaps, suggestions — as a clean recruiter-ready PDF.</p>
-        <div class="fc-arrow">→</div>
-      </div>
-      <div class="feature-card fc-pink" style="--delay:0.25s">
-        <div class="feature-icon-wrap">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon
-              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-          </svg>
-        </div>
-        <div class="fc-badge">New</div>
-        <h3>Strengths & Weaknesses</h3>
-        <p>Pinpoints exactly what recruiters will love and what needs fixing in your resume.</p>
-        <div class="fc-arrow">→</div>
-      </div>
-      <div class="feature-card fc-builder" style="--delay:0.3s; grid-column: 1 / -1;">
-        <div class="fc-builder-inner">
-          <div class="fc-builder-left">
-            <div class="feature-icon-wrap" style="background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.3)">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M3 9h18M9 21V9" />
-              </svg>
-            </div>
-            <div>
-              <div class="fc-badge"
-                style="background:rgba(99,102,241,0.15);color:#818cf8;border-color:rgba(99,102,241,0.3)">✨ Featured
-              </div>
-              <h3 style="font-size:1.2rem;margin-top:6px">ATS Resume Builder</h3>
-              <p>Fill a simple form → get a perfectly formatted, ATS-optimized resume. Download as PDF instantly.</p>
-            </div>
+        <div class="pill-info">
+          <p class="pill-title">ATS Score</p>
+          <div class="pill-bars">
+            <div class="pb"><span>Skills</span><div class="pbr"><div style="width:85%;background:#6366f1"></div></div></div>
+            <div class="pb"><span>Experience</span><div class="pbr"><div style="width:60%;background:#8b5cf6"></div></div></div>
+            <div class="pb"><span>Projects</span><div class="pbr"><div style="width:70%;background:#06b6d4"></div></div></div>
           </div>
-          <button class="btn-feature-cta" id="go-to-builder-btn">Build My Resume →</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== UPLOAD & ANALYZE ===== -->
-  <section class="upload-section" id="upload-section">
-    <div class="section-header">
-      <p class="section-label">Get Started</p>
-      <h2 class="section-title">Analyze Your Resume Now</h2>
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="sec-label">What You Get</div>
+    <h2 class="sec-title">7 Powerful Tools. Zero Cost.</h2>
+    <p class="sec-sub">Everything you need to beat the ATS and impress recruiters.</p>
+    <div class="feat-grid">
+      <div class="feat-card fc-a">
+        <div class="feat-icon">📊</div>
+        <div class="feat-badge">Core</div>
+        <h3>ATS Score Breakdown</h3>
+        <p>Detailed score across Skills, Experience, Projects, and Formatting with animated charts.</p>
+      </div>
+      <div class="feat-card fc-b">
+        <div class="feat-icon">🔍</div>
+        <div class="feat-badge">Pro</div>
+        <h3>Keyword Gap Analyzer</h3>
+        <p>Compare your resume vs any job description — see matched & missing keywords instantly.</p>
+      </div>
+      <div class="feat-card fc-c">
+        <div class="feat-icon">✍️</div>
+        <div class="feat-badge">AI</div>
+        <h3>Bullet Point Rewriter</h3>
+        <p>Paste a weak bullet point → get 3 metric-driven, action-verb-powered rewrites instantly.</p>
+      </div>
+      <div class="feat-card fc-d">
+        <div class="feat-icon">🎯</div>
+        <div class="feat-badge">Smart</div>
+        <h3>Role-Based Analysis</h3>
+        <p>Select Frontend / Backend / AI / DevOps and get a tailored skills gap report for your target role.</p>
+      </div>
+      <div class="feat-card fc-e">
+        <div class="feat-icon">💡</div>
+        <div class="feat-badge">AI</div>
+        <h3>Smart Suggestions</h3>
+        <p>Intelligent, actionable improvement suggestions — not just rules, but strategic career advice.</p>
+      </div>
+      <div class="feat-card fc-f">
+        <div class="feat-icon">📄</div>
+        <div class="feat-badge">Export</div>
+        <h3>PDF Report</h3>
+        <p>Export your full ATS analysis as a clean, recruiter-ready PDF report.</p>
+      </div>
     </div>
+    <!-- Builder CTA -->
+    <div class="feat-cta-card">
+      <div class="feat-cta-left">
+        <span class="feat-cta-icon">🏗️</span>
+        <div>
+          <div class="feat-badge" style="background:rgba(99,102,241,0.15);color:#818cf8;border-color:rgba(99,102,241,0.3)">✨ Featured</div>
+          <h3 style="margin-top:6px">ATS Resume Builder</h3>
+          <p>Fill a simple form → get a perfectly structured, ATS-optimized resume. Download as PDF.</p>
+        </div>
+      </div>
+      <button class="btn-primary" id="go-to-builder-btn">Build My Resume →</button>
+    </div>
+  </section>
 
+  <!-- ANALYZER -->
+  <section class="analyzer" id="analyzer">
+    <div class="sec-label">Get Started</div>
+    <h2 class="sec-title">Analyze Your Resume Now</h2>
+    <p class="sec-sub">Upload or paste your resume text and get instant ATS analysis.</p>
 
     <div class="analyzer-grid">
-      <!-- Left: Inputs -->
+      <!-- LEFT: INPUTS -->
       <div class="input-panel glass-card">
-        <div class="panel-header">
-          <h3>📄 Resume & Job Details</h3>
-        </div>
+        <div class="panel-head"><h3>📄 Resume & Job Details</h3></div>
 
-        <!-- Role Selector -->
+        <!-- Role -->
         <div class="form-group">
           <label class="form-label">Target Role</label>
           <div class="role-chips" id="role-chips">
-            <button class="role-chip active" data-role="frontend">Frontend Dev</button>
-            <button class="role-chip" data-role="backend">Backend Dev</button>
+            <button class="role-chip active" data-role="frontend">Frontend</button>
+            <button class="role-chip" data-role="backend">Backend</button>
             <button class="role-chip" data-role="fullstack">Full Stack</button>
             <button class="role-chip" data-role="ai">AI / ML</button>
             <button class="role-chip" data-role="devops">DevOps</button>
           </div>
         </div>
 
-        <!-- Upload Zone -->
+        <!-- Upload -->
         <div class="form-group">
-          <label class="form-label">Resume (PDF or paste text below)</label>
+          <label class="form-label">Upload Resume (PDF / TXT)</label>
           <div class="upload-zone" id="upload-zone">
-            <input type="file" id="resume-file" accept=".pdf,.doc,.docx,.txt" hidden />
-            <div class="upload-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="17 8 12 3 7 8" />
-                <line x1="12" y1="3" x2="12" y2="15" />
-              </svg>
-            </div>
-            <p class="upload-text">Drag & drop your resume here</p>
+            <input type="file" id="resume-file" accept=".pdf,.txt,.doc,.docx" hidden />
+            <div class="upload-icon">⬆️</div>
+            <p class="upload-text">Drag & drop your resume</p>
             <p class="upload-sub">or <span class="upload-link" id="upload-trigger">click to browse</span></p>
-            <p class="upload-formats">PDF · DOCX · TXT</p>
+            <p class="upload-fmt">PDF · DOCX · TXT</p>
             <div class="upload-filename" id="upload-filename" style="display:none"></div>
           </div>
         </div>
 
-        <!-- Resume Text -->
+        <!-- Paste -->
         <div class="form-group">
-          <div class="paste-label-row">
-            <label class="form-label">Paste Resume Text <span class="optional-tag">optional</span></label>
-            <button class="btn-sample" id="sample-btn" type="button">⚡ Try Sample Resume</button>
+          <div class="paste-row">
+            <label class="form-label">Paste Resume Text <span class="opt-tag">optional</span></label>
+            <button class="btn-sample" id="sample-btn">⚡ Sample Resume</button>
           </div>
-          <textarea class="text-input" id="resume-text" rows="8"
-            placeholder="Paste your resume text here... (optional — leave empty to test with a sample resume)"></textarea>
-          <p class="paste-hint">💡 PDF uploaded? Copy-paste the text here for accurate analysis.</p>
+          <textarea class="text-input" id="resume-text" rows="9" placeholder="Paste your resume text here... (optional — leave empty to use a sample)"></textarea>
+          <p class="paste-hint">💡 PDF uploaded? Copy-paste text here for accurate analysis.</p>
         </div>
 
         <!-- JD -->
         <div class="form-group">
-          <label class="form-label">Job Description <span class="optional-tag">optional</span></label>
-          <textarea class="text-input" id="jd-text" rows="6"
-            placeholder="Paste the job description to get match score and keyword gap analysis..."></textarea>
+          <label class="form-label">Job Description <span class="opt-tag">optional</span></label>
+          <textarea class="text-input" id="jd-text" rows="5" placeholder="Paste the job description to get keyword match score..."></textarea>
         </div>
 
         <button class="btn-analyze" id="analyze-btn">
-          <span class="btn-text">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M12 2a10 10 0 1 0 10 10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
-            Get My ATS Score
-          </span>
-          <span class="btn-loading" style="display:none">
-            <div class="spinner"></div>
-            Analyzing...
-          </span>
+          <span class="btn-text">🔍 Get My ATS Score</span>
+          <span class="btn-loading" style="display:none"><div class="spinner"></div> Analyzing...</span>
         </button>
       </div>
 
-      <!-- Right: Results -->
+      <!-- RIGHT: RESULTS -->
       <div class="results-panel" id="results-panel">
         <!-- Empty state -->
         <div class="empty-state" id="empty-state">
-          <div class="empty-illustration">
-            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-              <polyline points="10 9 9 9 8 9" />
-            </svg>
-          </div>
-          <h3>Your Analysis Will Appear Here</h3>
-          <p>Upload your resume and click Analyze to get your AI-powered insights.</p>
-          <div class="empty-features">
-            <span>📊 ATS Score</span>
-            <span>🎯 Job Match</span>
-            <span>🔍 Keyword Gap</span>
-            <span>💡 AI Tips</span>
+          <div class="empty-icon">📋</div>
+          <h3>Your Analysis Appears Here</h3>
+          <p>Upload or paste your resume, then click <strong>Get My ATS Score</strong></p>
+          <div class="empty-chips">
+            <span>📊 ATS Score</span><span>🎯 Job Match</span><span>🔍 Keyword Gap</span><span>💡 AI Tips</span>
           </div>
         </div>
 
-        <!-- Results (hidden until analysis done) -->
+        <!-- Results -->
         <div class="results-content" id="results-content" style="display:none">
 
-          <!-- ATS Score Card -->
-          <div class="result-card glass-card score-card" id="score-card">
-            <div class="score-header">
-              <h3>🎯 ATS Score</h3>
-              <div class="score-badge" id="score-badge">—</div>
-            </div>
-            <div class="score-ring-container">
-              <svg class="score-ring" viewBox="0 0 120 120" id="score-ring-svg">
-                <circle cx="60" cy="60" r="50" class="ring-bg" />
-                <circle cx="60" cy="60" r="50" class="ring-fill" id="ring-fill" stroke-dasharray="0 314" />
-              </svg>
-              <div class="score-center">
-                <span class="score-number" id="score-number">0</span>
-                <span class="score-max">/100</span>
+          <!-- Score Card -->
+          <div class="result-card glass-card score-card">
+            <div class="score-top">
+              <div class="score-ring-wrap">
+                <svg class="score-ring" viewBox="0 0 120 120" id="score-ring-svg">
+                  <circle cx="60" cy="60" r="50" class="ring-bg"/>
+                  <circle cx="60" cy="60" r="50" class="ring-fill" id="ring-fill" stroke-dasharray="0 314"/>
+                </svg>
+                <div class="score-center">
+                  <span id="score-number" class="score-num">0</span>
+                  <span class="score-max">/100</span>
+                </div>
+              </div>
+              <div class="score-right">
+                <div class="score-badge-wrap">
+                  <span class="score-label">ATS Score</span>
+                  <span class="score-badge" id="score-badge">—</span>
+                </div>
+                <div id="score-breakdown" class="score-bars"></div>
               </div>
             </div>
-            <div class="score-breakdown" id="score-breakdown"></div>
           </div>
 
-          <!-- Job Match Card -->
+          <!-- Job Match -->
           <div class="result-card glass-card" id="match-card" style="display:none">
             <h3>🔍 Job Match Analysis</h3>
-            <div class="match-percent-bar">
-              <div class="match-label-row">
-                <span>Match Score</span>
-                <span class="match-pct" id="match-pct">0%</span>
-              </div>
-              <div class="progress-bar">
-                <div class="progress-fill" id="match-bar" style="width:0%"></div>
-              </div>
+            <div class="match-row">
+              <span>Match Score</span>
+              <span class="match-pct" id="match-pct">0%</span>
             </div>
-            <div class="keywords-grid">
-              <div class="keyword-col">
+            <div class="progress-bar"><div class="progress-fill" id="match-bar" style="width:0%"></div></div>
+            <div class="kw-grid">
+              <div>
                 <h4>✅ Matched Keywords</h4>
-                <div class="keyword-tags" id="matched-tags"></div>
+                <div class="kw-tags" id="matched-tags"></div>
               </div>
-              <div class="keyword-col">
+              <div>
                 <h4>❌ Missing Keywords</h4>
-                <div class="keyword-tags" id="missing-tags"></div>
+                <div class="kw-tags" id="missing-tags"></div>
               </div>
             </div>
           </div>
 
           <!-- Strengths & Weaknesses -->
-          <div class="result-card glass-card" id="sw-card">
+          <div class="result-card glass-card">
             <div class="sw-grid">
-              <div class="sw-col strengths">
+              <div class="sw-col">
                 <h3>✅ Strengths</h3>
                 <ul id="strengths-list"></ul>
               </div>
-              <div class="sw-col weaknesses">
+              <div class="sw-col sw-weak">
                 <h3>❌ Weaknesses</h3>
                 <ul id="weaknesses-list"></ul>
               </div>
             </div>
           </div>
 
-          <!-- Role Skills Gap -->
-          <div class="result-card glass-card" id="skills-card">
-            <h3>🎭 Role-Based Skills Analysis</h3>
+          <!-- Skills Gap -->
+          <div class="result-card glass-card">
+            <h3>🎯 Role-Based Skills Analysis</h3>
             <div class="skills-grid">
               <div>
                 <h4>✅ You Have</h4>
@@ -356,42 +267,63 @@
           </div>
 
           <!-- AI Suggestions -->
-          <div class="result-card glass-card" id="suggestions-card">
+          <div class="result-card glass-card">
             <h3>💡 AI Improvement Suggestions</h3>
-            <div class="suggestions-list" id="suggestions-list"></div>
+            <div id="suggestions-list" class="suggestions-list"></div>
           </div>
 
-          <!-- Enhanced Bullets -->
-          <div class="result-card glass-card" id="bullets-card">
-            <h3>🚀 Enhanced Bullet Points</h3>
-            <p class="bullets-sub">AI-rewritten bullet points with metrics and action verbs</p>
-            <div class="bullets-list" id="bullets-list"></div>
+          <!-- Bullet Enhancer -->
+          <div class="result-card glass-card">
+            <h3>🚀 AI-Enhanced Bullet Points</h3>
+            <p class="card-sub">High-impact rewrites with metrics and action verbs for your role</p>
+            <div id="bullets-list" class="bullets-list"></div>
           </div>
 
           <!-- Download -->
-          <button class="btn-download" id="download-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            Download Full Report (PDF)
-          </button>
+          <button class="btn-download" id="download-btn">⬇ Download Full Report (PDF)</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== ATS RESUME BUILDER ===== -->
-  <section class="builder-section" id="builder-section">
-    <div class="section-header">
-      <p class="section-label">✨ New Feature</p>
-      <h2 class="section-title">ATS Resume Builder</h2>
-      <p class="section-sub">Fill in your details → get a perfectly structured, recruiter-ready resume in seconds.</p>
+  <!-- AI BULLET REWRITER (Killer Feature) -->
+  <section class="rewriter-section glass-card-section" id="rewriter">
+    <div class="sec-label">🔥 Killer Feature</div>
+    <h2 class="sec-title">AI Bullet Point Rewriter</h2>
+    <p class="sec-sub">Paste any weak bullet point → get 3 powerful, metric-driven rewrites instantly.</p>
+    <div class="rewriter-box glass-card">
+      <div class="form-group">
+        <label class="form-label">Your Weak Bullet Point</label>
+        <textarea class="text-input" id="bullet-input" rows="3" placeholder="e.g. Worked on a web app using React and Node.js"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Target Role (for context)</label>
+        <div class="role-chips" id="bullet-role-chips">
+          <button class="role-chip active" data-role="frontend">Frontend</button>
+          <button class="role-chip" data-role="backend">Backend</button>
+          <button class="role-chip" data-role="fullstack">Full Stack</button>
+          <button class="role-chip" data-role="ai">AI / ML</button>
+          <button class="role-chip" data-role="devops">DevOps</button>
+        </div>
+      </div>
+      <button class="btn-analyze" id="rewrite-btn">
+        <span class="btn-text">✨ Rewrite My Bullet Point</span>
+        <span class="btn-loading" style="display:none"><div class="spinner"></div> Rewriting...</span>
+      </button>
+      <div id="rewrite-output" class="rewrite-output" style="display:none">
+        <h4>✨ Rewritten Versions</h4>
+        <div id="rewrite-results"></div>
+      </div>
     </div>
+  </section>
+
+  <!-- BUILDER -->
+  <section class="builder-section" id="builder">
+    <div class="sec-label">✨ New Feature</div>
+    <h2 class="sec-title">ATS Resume Builder</h2>
+    <p class="sec-sub">Fill in your details → get a perfectly structured, recruiter-ready resume in seconds.</p>
 
     <div class="builder-layout glass-card">
-      <!-- Builder Tabs -->
       <div class="builder-tabs" id="builder-tabs">
         <button class="btab active" data-tab="personal">👤 Personal</button>
         <button class="btab" data-tab="skills">🛠 Skills</button>
@@ -401,101 +333,65 @@
       </div>
 
       <div class="builder-body">
-        <!-- Personal Info -->
         <div class="btab-content active" id="tab-personal">
           <h4 class="builder-section-title">Personal Information</h4>
           <div class="builder-form-grid">
-            <div class="form-group"><label class="form-label">Full Name *</label><input class="text-input" id="b-name"
-                placeholder="e.g. Chandru M" /></div>
-            <div class="form-group"><label class="form-label">Email *</label><input class="text-input" id="b-email"
-                placeholder="you@email.com" /></div>
-            <div class="form-group"><label class="form-label">Phone</label><input class="text-input" id="b-phone"
-                placeholder="+91-XXXXX-XXXXX" /></div>
-            <div class="form-group"><label class="form-label">LinkedIn</label><input class="text-input" id="b-linkedin"
-                placeholder="linkedin.com/in/username" /></div>
-            <div class="form-group"><label class="form-label">GitHub</label><input class="text-input" id="b-github"
-                placeholder="github.com/username" /></div>
-            <div class="form-group"><label class="form-label">Location</label><input class="text-input" id="b-location"
-                placeholder="City, State" /></div>
+            <div class="form-group"><label class="form-label">Full Name *</label><input class="text-input" id="b-name" placeholder="e.g. Chandru M" /></div>
+            <div class="form-group"><label class="form-label">Email *</label><input class="text-input" id="b-email" placeholder="you@email.com" /></div>
+            <div class="form-group"><label class="form-label">Phone</label><input class="text-input" id="b-phone" placeholder="+91-XXXXX-XXXXX" /></div>
+            <div class="form-group"><label class="form-label">LinkedIn</label><input class="text-input" id="b-linkedin" placeholder="linkedin.com/in/username" /></div>
+            <div class="form-group"><label class="form-label">GitHub</label><input class="text-input" id="b-github" placeholder="github.com/username" /></div>
+            <div class="form-group"><label class="form-label">Location</label><input class="text-input" id="b-location" placeholder="City, State" /></div>
           </div>
           <div class="form-group">
             <label class="form-label">Professional Summary</label>
-            <textarea class="text-input" id="b-summary" rows="4"
-              placeholder="Write 2–3 lines about your expertise, goals, and what makes you stand out..."></textarea>
+            <textarea class="text-input" id="b-summary" rows="4" placeholder="Write 2–3 lines about your expertise, goals, and what makes you stand out..."></textarea>
           </div>
         </div>
 
-        <!-- Skills -->
         <div class="btab-content" id="tab-skills">
           <h4 class="builder-section-title">Skills Summary</h4>
           <div class="builder-form-grid">
-            <div class="form-group"><label class="form-label">Languages</label><input class="text-input" id="b-lang"
-                placeholder="Python, JavaScript, Java" /></div>
-            <div class="form-group"><label class="form-label">Frontend</label><input class="text-input" id="b-frontend"
-                placeholder="React, HTML5, CSS3, Next.js" /></div>
-            <div class="form-group"><label class="form-label">Backend</label><input class="text-input" id="b-backend"
-                placeholder="Node.js, Express, FastAPI" /></div>
-            <div class="form-group"><label class="form-label">Database</label><input class="text-input" id="b-db"
-                placeholder="PostgreSQL, MongoDB, MySQL" /></div>
-            <div class="form-group"><label class="form-label">DevOps / Cloud</label><input class="text-input"
-                id="b-devops" placeholder="Docker, AWS, Git, CI/CD" /></div>
-            <div class="form-group"><label class="form-label">Tools</label><input class="text-input" id="b-tools"
-                placeholder="VS Code, Postman, Figma" /></div>
+            <div class="form-group"><label class="form-label">Languages</label><input class="text-input" id="b-lang" placeholder="Python, JavaScript, Java" /></div>
+            <div class="form-group"><label class="form-label">Frontend</label><input class="text-input" id="b-frontend" placeholder="React, HTML5, CSS3, Next.js" /></div>
+            <div class="form-group"><label class="form-label">Backend</label><input class="text-input" id="b-backend" placeholder="Node.js, Express, FastAPI" /></div>
+            <div class="form-group"><label class="form-label">Database</label><input class="text-input" id="b-db" placeholder="PostgreSQL, MongoDB, MySQL" /></div>
+            <div class="form-group"><label class="form-label">DevOps / Cloud</label><input class="text-input" id="b-devops" placeholder="Docker, AWS, Git, CI/CD" /></div>
+            <div class="form-group"><label class="form-label">Tools</label><input class="text-input" id="b-tools" placeholder="VS Code, Postman, Figma" /></div>
           </div>
         </div>
 
-        <!-- Experience -->
         <div class="btab-content" id="tab-experience">
           <h4 class="builder-section-title">Work Experience</h4>
           <div id="exp-list"></div>
           <button class="btn-add-item" id="add-exp-btn">+ Add Experience</button>
         </div>
 
-        <!-- Projects -->
         <div class="btab-content" id="tab-projects">
           <h4 class="builder-section-title">Projects</h4>
           <div id="proj-list"></div>
           <button class="btn-add-item" id="add-proj-btn">+ Add Project</button>
         </div>
 
-        <!-- Education -->
         <div class="btab-content" id="tab-education">
           <h4 class="builder-section-title">Education</h4>
           <div class="builder-form-grid">
-            <div class="form-group"><label class="form-label">Degree / Program *</label><input class="text-input"
-                id="b-degree" placeholder="B.Tech Computer Science" /></div>
-            <div class="form-group"><label class="form-label">College / University *</label><input class="text-input"
-                id="b-college" placeholder="SRM University" /></div>
-            <div class="form-group"><label class="form-label">Years</label><input class="text-input" id="b-year"
-                placeholder="2022 – 2026" /></div>
-            <div class="form-group"><label class="form-label">CGPA / Score</label><input class="text-input" id="b-cgpa"
-                placeholder="8.5 / 10" /></div>
+            <div class="form-group"><label class="form-label">Degree / Program *</label><input class="text-input" id="b-degree" placeholder="B.Tech Computer Science" /></div>
+            <div class="form-group"><label class="form-label">College / University *</label><input class="text-input" id="b-college" placeholder="SRM University" /></div>
+            <div class="form-group"><label class="form-label">Years</label><input class="text-input" id="b-year" placeholder="2022 – 2026" /></div>
+            <div class="form-group"><label class="form-label">CGPA / Score</label><input class="text-input" id="b-cgpa" placeholder="8.5 / 10" /></div>
           </div>
           <div class="form-group">
-            <label class="form-label">Certifications <span class="optional-tag">optional</span></label>
-            <textarea class="text-input" id="b-certs" rows="3"
-              placeholder="AWS Cloud Practitioner, Meta Frontend Developer, etc."></textarea>
+            <label class="form-label">Certifications <span class="opt-tag">optional</span></label>
+            <textarea class="text-input" id="b-certs" rows="3" placeholder="AWS Cloud Practitioner, Meta Frontend Developer, etc."></textarea>
           </div>
         </div>
       </div>
 
-      <!-- Builder Actions -->
       <div class="builder-actions">
-        <button class="btn-ghost" id="builder-preview-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-            <circle cx="12" cy="12" r="3" />
-          </svg>
-          Preview Resume
-        </button>
+        <button class="btn-ghost" id="builder-preview-btn">👁 Preview Resume</button>
         <button class="btn-analyze" id="builder-generate-btn" style="flex:1">
-          <span class="btn-text">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-            </svg>
-            Generate & Download ATS Resume
-          </span>
+          <span class="btn-text">📄 Generate & Download ATS Resume</span>
         </button>
       </div>
     </div>
@@ -515,21 +411,18 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-brand">
-        <span class="brand-name">Resume<span class="brand-accent">IQ</span></span>
-        <p> Built by Chandru.M </p>
-      </div>
-      <p class="footer-note"></p>
+      <span class="brand">Resume<span>IQ</span></span>
+      <p>Built by <strong>Chandru M</strong> · 100% Client-Side · No Data Leaves Your Browser</p>
     </div>
   </footer>
 
-
+  <!-- Toast -->
+  <div id="toast-container"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="app.js"></script>
 </body>
-
 </html>
