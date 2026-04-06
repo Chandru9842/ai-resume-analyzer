@@ -89,42 +89,42 @@ This application solves the problem by providing an intelligent resume analysis 
 ### 🏠 Landing Page
 The landing page is designed with a modern, responsive UI that clearly communicates the purpose of the application — helping users optimize their resumes using AI-powered analysis. It provides a strong first impression with clear call-to-action buttons such as “Analyze Resume” and “Build ATS Resume,” guiding users into the workflow seamlessly.
 
-![Landing Page](./assets/img1.png)
+![Landing Page](./assests/img1.png)
 
 ---
 
 ### ⚙️ Features Overview
 This section presents a comprehensive overview of the platform’s capabilities, including ATS scoring, keyword analysis, and AI-powered tools that help users align their resumes with industry expectations.
 
-![Features](./assets/img2.png)
+![Features](./assests/img2.png)
 
 ---
 
 ### 📊 Resume Analyzer
 The Resume Analyzer is the core module that processes resumes and evaluates them based on skills, experience, and formatting. It also compares resumes with job descriptions to identify gaps.
 
-![Resume Analyzer](./assets/img3.png)
+![Resume Analyzer](./assests/img3.png)
 
 ---
 
 ### 🧠 AI Bullet Point Rewriter
 This feature improves resume content by converting weak bullet points into strong, action-oriented statements with better clarity and impact.
 
-![Bullet Rewriter](./assets/img4.png)
+![Bullet Rewriter](./assests/img4.png)
 
 ---
 
 ### 🧾 ATS Resume Builder
 The builder allows users to create structured, ATS-friendly resumes by entering their details in a guided format.
 
-![Resume Builder](./assets/img5.png)
+![Resume Builder](./assests/img5.png)
 
 ---
 
 ### 🔥 Additional UI / Flow
 This section highlights overall UI consistency, smooth navigation, and user-friendly design across the application.
 
-![Extra](./assets/img6.png)
+![Extra](./assests/img6.png)
 
 ---
 
