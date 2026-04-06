@@ -96,14 +96,14 @@ The landing page is designed with a modern, responsive UI that clearly communica
 ### ⚙️ Features Overview
 This section presents a comprehensive overview of the platform’s capabilities, including ATS scoring, keyword analysis, and AI-powered tools that help users align their resumes with industry expectations.
 
-![Features](./assests/img2.png)
+![Features](./assests/img3.png)
 
 ---
 
 ### 📊 Resume Analyzer
 The Resume Analyzer is the core module that processes resumes and evaluates them based on skills, experience, and formatting. It also compares resumes with job descriptions to identify gaps.
 
-![Resume Analyzer](./assests/img3.png)
+![Resume Analyzer](./assests/img4.png)
 
 ---
 
