@@ -1,65 +1,86 @@
-// ─── Sample Resumes (one per role) ──────────────────────────
+// ═══════════════════════════════════════════════════════════════
+//  ResumeIQ — Client-Side AI Engine
+// ═══════════════════════════════════════════════════════════════
+
+// ─── Helpers ──────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+
+// ─── State ────────────────────────────────────────────────────
+let selectedRole       = 'frontend';
+let bulletSelectedRole = 'frontend';
+let uploadedText       = '';
+
+// ─── Sample Resumes ───────────────────────────────────────────
 const SAMPLE_RESUMES = {
-  frontend: `John Doe | john@email.com | github.com/johndoe | linkedin.com/in/johndoe
+  frontend: `Chandru M | chandru@email.com | +91-9876543210 | linkedin.com/in/chandru | github.com/chandru
 
-Summary
-Frontend developer with 2 years of experience building responsive React applications.
+Objective
+Passionate Frontend Developer with 1+ year of experience building responsive, user-friendly web applications using React and JavaScript. Seeking a frontend role to contribute to scalable product development.
 
-Skills
-React, JavaScript, TypeScript, HTML, CSS, Next.js, Git, REST APIs, Tailwind, Webpack
-
-Experience
-Frontend Developer — TechStartup, 2022–Present
-- Built responsive React dashboard reducing user onboarding time by 35%
-- Engineered reusable component library of 20+ elements used across 3 products
-- Integrated REST APIs and optimized state management with Redux
-- Improved page load speed by 40% using lazy loading and code splitting
+Skills Summary
+Languages: JavaScript, TypeScript, HTML5, CSS3
+Frontend: React.js, Next.js, Redux, Tailwind CSS, Bootstrap
+Backend: Node.js, Express.js (basic)
+Database: MongoDB, Firebase
+Tools: Git, GitHub, VS Code, Figma, Postman, Webpack, Vite
 
 Projects
-E-Commerce UI | React, TypeScript, Tailwind
-- Developed full-featured shopping cart serving 500+ test users
-- Implemented dynamic search with debouncing reducing API calls by 60%
+Portfolio Website | React, CSS3, EmailJS
+- Built a responsive personal portfolio with animations and a working contact form
+- Deployed on Vercel achieving 98/100 Lighthouse performance score
+- Integrated EmailJS for direct email notifications without a backend
 
-Simon Game | HTML, CSS, JavaScript
-- Built browser-based memory game with dynamic sequence generation
-- Achieved 95 Lighthouse performance score
+E-Commerce UI | React, Redux, Tailwind
+- Developed a full-featured shopping cart with product filtering and real-time cart updates
+- Implemented responsive design supporting 320px–1440px screen widths
+- Added local storage persistence for cart state across sessions
 
-Education
-B.Tech Computer Science — ABC University, 2022`,
-
-  backend: `Jane Smith | jane@email.com | github.com/janesmith
-
-Summary
-Backend engineer with 3 years experience designing scalable APIs and database systems.
-
-Skills
-Node.js, Python, PostgreSQL, MongoDB, Redis, Docker, REST APIs, SQL, AWS, Git
+Weather Dashboard | JavaScript, OpenWeather API, Chart.js
+- Built real-time weather app displaying 7-day forecast with interactive Chart.js visualizations
+- Handles 500+ API calls per hour with client-side caching reducing redundant requests by 60%
 
 Experience
-Backend Developer — DataCorp, 2021–Present
-- Architected REST API serving 100K+ daily requests with 99.9% uptime
-- Reduced database query time by 60% using PostgreSQL indexing strategies
-- Deployed containerized microservices with Docker reducing server costs by 30%
-- Built authentication system handling 2M+ JWT token validations per month
-
-Projects
-Task Management API | Node.js, PostgreSQL, Redis
-- Designed RESTful API with caching layer reducing response time from 800ms to 120ms
+Frontend Developer Intern — TechStartup India, 2024 (3 Months)
+- Developed 12+ responsive React components reducing page load time by 35%
+- Collaborated with UX team to implement Figma designs pixel-perfectly
+- Fixed 40+ bugs across legacy React codebase improving stability
 
 Education
-B.E. Computer Science — XYZ College, 2021`,
+B.Tech Computer Science — SRM University, 2022–2026 | CGPA: 8.2`,
 
-  fullstack: `Alex Kumar | alex@email.com | github.com/alexdev | linkedin.com/in/alexkumar
+  backend: `Ravi Kumar | ravi@email.com | +91-9876543211 | github.com/ravikumar
 
 Summary
-Full Stack Developer with experience in React, Node.js and cloud deployments.
+Backend engineer with strong Node.js and Python skills. Built REST APIs serving 50K+ requests/day.
 
 Skills
-React, Node.js, TypeScript, PostgreSQL, MongoDB, Docker, AWS, REST APIs, Git, Redis
+Node.js, Express.js, Python, FastAPI, PostgreSQL, MongoDB, Redis, Docker, AWS EC2, Git, REST API, GraphQL, JWT, Microservices
+
+Experience
+Backend Developer Intern — CloudTech Solutions, 2024
+- Engineered REST API with Node.js/Express serving 50K+ daily requests
+- Reduced database query time by 45% via PostgreSQL indexing and Redis caching
+- Implemented JWT authentication system securing 10K+ user accounts
+
+Projects
+Task Management API | Node.js, Express, PostgreSQL
+- Built production-grade REST API with CRUD operations and role-based access control
+- Deployed on AWS EC2 with Docker, achieving 99.8% uptime
+
+Education
+B.Tech — NIT Trichy, 2022–2026 | CGPA: 8.5`,
+
+  fullstack: `Priya Sharma | priya@email.com | github.com/priyadev | linkedin.com/in/priya
+
+Summary
+Full Stack Developer with 2 years building React + Node.js applications processing 10K+ users.
+
+Skills
+React, Next.js, TypeScript, Node.js, Express, PostgreSQL, MongoDB, Docker, AWS, Git, REST API, GraphQL, Redis, Tailwind
 
 Experience
 Full Stack Developer — WebAgency, 2022–Present
-- Built full-stack SaaS platform processing 10K monthly active users
+- Built full-stack SaaS platform used by 10K monthly active users
 - Engineered React frontend + Node.js backend reducing page load by 45%
 - Deployed to AWS EC2 with Docker, achieving 99.8% uptime
 - Integrated Stripe payment gateway processing $20K monthly transactions
@@ -71,170 +92,208 @@ Blog Platform | React, Node.js, PostgreSQL
 Education
 B.Tech — Tech University, 2022`,
 
-  ai: `Priya AI | priya@email.com | github.com/priyaml
+  ai: `Arjun AI | arjun@email.com | github.com/arjunml
 
 Summary
-Machine Learning engineer with expertise in NLP, deep learning and model deployment.
+Machine Learning engineer with 2 years in NLP, deep learning, and model deployment. Published 1 paper.
 
 Skills
-Python, PyTorch, TensorFlow, scikit-learn, NLP, Pandas, NumPy, SQL, Jupyter, Git
+Python, PyTorch, TensorFlow, scikit-learn, NLP, Transformers, Pandas, NumPy, SQL, FastAPI, Docker, AWS SageMaker, MLflow, Jupyter
 
 Experience
-ML Engineer — AILabs, 2022–Present
-- Fine-tuned BERT model achieving 92% accuracy on text classification tasks
-- Built NLP pipeline processing 500K documents/day with 94% precision
-- Deployed ML models with FastAPI serving 10K predictions/day
-- Reduced model inference time by 40% using quantization techniques
+ML Engineer Intern — AI Labs, 2024
+- Fine-tuned BERT model for sentiment analysis achieving 94.2% accuracy on 100K dataset
+- Built data pipeline processing 1M records/day with Apache Kafka
+- Deployed model via FastAPI serving 5K predictions/hour
 
 Projects
-Sentiment Analyzer | Python, PyTorch, Transformers
-- Built real-time sentiment analysis model trained on 100K reviews
+Resume Classifier | Python, BERT, FastAPI
+- Built NLP classifier categorizing 50K resumes with 91% accuracy
 
 Education
-M.Tech Artificial Intelligence — AI University, 2022`,
+B.Tech AI/ML — IIT Bombay, 2022–2026 | CGPA: 9.1`,
 
-  devops: `Dev Ops | dev@email.com | github.com/devopsdev
+  devops: `Kiran DevOps | kiran@email.com | github.com/kiranops
 
 Summary
-DevOps engineer specializing in Kubernetes, CI/CD pipelines and cloud infrastructure.
+DevOps engineer with expertise in CI/CD, Kubernetes, and cloud infrastructure. Reduced deployment time by 70%.
 
 Skills
-Docker, Kubernetes, AWS, Terraform, Linux, CI/CD, Jenkins, Git, Prometheus, Ansible
+Linux, Docker, Kubernetes, Terraform, AWS, GCP, Jenkins, GitHub Actions, Ansible, Prometheus, Grafana, Helm, Python, Bash
 
 Experience
-DevOps Engineer — CloudCo, 2021–Present
-- Architected Kubernetes cluster managing 50+ microservices with 99.99% uptime
-- Implemented Terraform IaC reducing provisioning time from days to 30 minutes
-- Built CI/CD pipelines cutting deployment failures by 75% and release cycle by 60%
-- Set up Prometheus/Grafana monitoring reducing MTTR from 4 hours to 20 minutes
+DevOps Engineer Intern — InfraCloud, 2024
+- Designed CI/CD pipeline with Jenkins reducing deployment time by 70%
+- Migrated 15 microservices to Kubernetes (EKS) handling 100K daily requests
+- Implemented Prometheus + Grafana monitoring covering 50+ system metrics
 
 Projects
-Auto-Scaling Infrastructure | AWS, Terraform, Kubernetes
-- Automated scaling for 200+ concurrent users with zero-downtime deployments
+Infrastructure Automation | Terraform, AWS, Ansible
+- Automated provisioning of 20+ EC2 instances reducing setup time by 85%
 
 Education
-B.E. Computer Science — Tech College, 2021`
+B.Tech — VIT Vellore, 2022–2026 | CGPA: 7.9`
 };
 
-// ─── Role Skill Libraries ─────────────────────────────────────
+// ─── Role Skills ───────────────────────────────────────────────
 const ROLE_SKILLS = {
-  frontend:  ['react', 'vue', 'angular', 'typescript', 'javascript', 'css', 'html', 'next.js', 'nextjs', 'webpack', 'vite', 'sass', 'tailwind', 'redux', 'graphql', 'rest api', 'git', 'figma', 'responsive'],
-  backend:   ['node.js', 'nodejs', 'python', 'java', 'go', 'rust', 'sql', 'postgresql', 'mysql', 'mongodb', 'rest api', 'graphql', 'docker', 'redis', 'microservices', 'aws', 'express', 'fastapi', 'spring', 'git'],
-  fullstack: ['react', 'node.js', 'nodejs', 'typescript', 'javascript', 'postgresql', 'mongodb', 'docker', 'rest api', 'git', 'aws', 'redis', 'next.js', 'nextjs', 'sql', 'html', 'css', 'express'],
-  ai:        ['python', 'pytorch', 'tensorflow', 'machine learning', 'deep learning', 'llm', 'scikit-learn', 'nlp', 'sql', 'pandas', 'numpy', 'keras', 'transformers', 'computer vision', 'data science', 'jupyter', 'git'],
-  devops:    ['docker', 'kubernetes', 'k8s', 'ci/cd', 'aws', 'gcp', 'azure', 'terraform', 'linux', 'jenkins', 'ansible', 'prometheus', 'grafana', 'git', 'bash', 'helm', 'nginx', 'github actions']
+  frontend: ['react','javascript','typescript','html','css','next.js','redux','webpack','vite','tailwind','figma','responsive design','rest api','git'],
+  backend:  ['node.js','python','java','express','fastapi','django','rest api','graphql','postgresql','mongodb','redis','docker','aws','jwt','microservices','sql'],
+  fullstack:['react','node.js','javascript','typescript','express','postgresql','mongodb','docker','aws','git','rest api','redis','graphql','next.js'],
+  ai:       ['python','pytorch','tensorflow','scikit-learn','nlp','pandas','numpy','sql','docker','fastapi','transformers','hugging face','mlflow','jupyter'],
+  devops:   ['docker','kubernetes','aws','gcp','terraform','jenkins','github actions','linux','ansible','prometheus','grafana','helm','python','bash','ci/cd']
 };
 
-const ALL_TECH_SKILLS = [
-  'javascript','typescript','python','java','c++','c#','go','rust','ruby','php','swift','kotlin',
-  'react','vue','angular','svelte','next.js','nextjs','nuxt','gatsby','express','fastapi','django','flask','spring','laravel',
-  'html','css','sass','scss','tailwind','bootstrap','webpack','vite','babel','eslint',
-  'node.js','nodejs','deno','bun',
-  'sql','postgresql','mysql','mongodb','redis','sqlite','cassandra','dynamodb','firebase','supabase',
-  'docker','kubernetes','k8s','aws','gcp','azure','terraform','ansible','jenkins','github actions','ci/cd','nginx','linux',
-  'git','github','gitlab','bitbucket',
-  'machine learning','deep learning','pytorch','tensorflow','keras','scikit-learn','pandas','numpy','hugging face','llm','nlp','computer vision',
-  'rest api','graphql','grpc','microservices','websocket',
-  'figma','adobe xd','sketch',
-  'jest','cypress','selenium','pytest',
-  'agile','scrum','jira','confluence'
-];
+// ─── Action verbs ──────────────────────────────────────────────
+const ACTION_VERBS = ['architected','engineered','built','developed','designed','implemented','deployed','optimized','reduced','increased','improved','created','led','delivered','automated','migrated','integrated','launched','streamlined'];
+const WEAK_VERBS   = ['worked','helped','assisted','participated','involved','contributed','was responsible','made','did','used','utilized'];
 
-const ACTION_VERBS = [
-  'architected','engineered','developed','built','designed','implemented','deployed','optimized',
-  'led','managed','collaborated','coordinated','mentored','delivered','achieved','improved',
-  'reduced','increased','accelerated','automated','integrated','migrated','refactored',
-  'launched','created','established','streamlined','enhanced','transformed','drove',
-  'spearheaded','pioneered','revamped','scaled','shipped'
-];
-
-const WEAK_VERBS = ['worked on','helped with','assisted','responsible for','was part of','participated in','involved in'];
-
-const KEY_SECTIONS = ['experience','education','skills','projects','summary','objective','contact','certifications','achievements'];
-const QUANTIFIER_PATTERNS = [/\d+%/g, /\d+x/g, /\$\d+/g, /\d+\s*(users|customers|requests|transactions|million|k|thousand)/gi, /\d+\+/g, /increased|decreased|reduced|improved|grew|boosted/gi];
-
-const SUGGESTIONS_BANK = {
-  noMetrics:    'Add quantifiable achievements: e.g. "Improved load time by 40%" or "Served 10K+ users"',
-  noGithub:     'Include a GitHub profile link — recruiters want to see your actual code',
-  weakVerbs:    'Replace weak phrases like "worked on" or "helped with" with strong verbs like "architected", "engineered", "deployed"',
-  shortResume:  'Your resume seems short. Expand project descriptions with responsibilities and impact.',
-  noProjects:   'Add a dedicated Projects section with 2-3 strong projects showcasing your skills',
-  missingRole:  (skill) => `Add "${skill}" experience or projects — it is a must-have for this role`,
-  noSummary:    'Add a 2–3 line professional summary at the top to immediately capture recruiter attention',
-  noLinks:      'Include your LinkedIn and GitHub profile URLs',
-  genericDesc:  'Make each bullet point unique — avoid generic descriptions like "Worked on web app" and be specific',
-  addCert:      'Consider adding relevant certifications (AWS, GCP, Meta, etc.) to boost credibility'
+// ─── Bullet templates per role ─────────────────────────────────
+const BULLET_TEMPLATES = {
+  frontend: [
+    'Engineered {n} responsive React components reducing page load time by {p}% and improving Core Web Vitals score to 95+',
+    'Implemented lazy loading and code splitting achieving {p}% bundle size reduction across {n} production features',
+    'Collaborated with UX team to build accessible, pixel-perfect UI using Figma designs serving {k}+ monthly users',
+    'Integrated REST APIs and optimized state management with Redux, reducing re-renders by {p}% on critical routes',
+    'Developed reusable component library of {n}+ elements adopted across {k}+ projects, cutting development time by {p}%',
+  ],
+  backend: [
+    'Architected RESTful API with Node.js/Express serving {k}K+ daily requests with 99.9% uptime SLA',
+    'Optimized PostgreSQL queries and implemented Redis caching reducing average response time by {p}%',
+    'Designed JWT-based authentication system securing {k}K+ user accounts with role-based access control',
+    'Engineered microservices architecture processing {k}K+ events/hour using message queuing',
+    'Deployed containerized backend on AWS EC2 with Docker, scaling to handle {p}x traffic spikes',
+  ],
+  fullstack: [
+    'Built end-to-end SaaS platform using React + Node.js serving {k}K+ monthly active users',
+    'Engineered full-stack feature cutting development cycle from {n} days to {p} days using Next.js App Router',
+    'Integrated Stripe payment gateway processing ${k}K+ monthly transactions with 100% uptime',
+    'Designed and deployed REST API with Express.js handling {k}+ concurrent connections',
+    'Implemented CI/CD pipeline with GitHub Actions reducing deployment time by {p}%',
+  ],
+  ai: [
+    'Fine-tuned BERT model for {task} achieving {p}% accuracy on dataset of {k}K+ samples',
+    'Built automated data pipeline processing {k}M+ records/day using Python and Apache Kafka',
+    'Deployed ML model via FastAPI endpoint serving {k}K+ predictions/hour with <100ms latency',
+    'Reduced model inference time by {p}% using ONNX optimization and batch processing',
+    'Implemented MLflow experiment tracking for {n}+ model iterations, improving reproducibility',
+  ],
+  devops: [
+    'Designed CI/CD pipeline with Jenkins/GitHub Actions reducing deployment time by {p}%',
+    'Migrated {n}+ microservices to Kubernetes (EKS) handling {k}K+ daily requests with auto-scaling',
+    'Automated infrastructure provisioning with Terraform reducing setup time by {p}%',
+    'Implemented Prometheus + Grafana monitoring covering {n}+ system metrics and alerting rules',
+    'Reduced cloud infrastructure costs by {p}% through AWS resource optimization and reserved instances',
+  ]
 };
 
-// ─── State ────────────────────────────────────────────────────
-let selectedRole = 'frontend';
-let uploadedText  = '';
-let analysisData  = null;
-
-const $ = id => document.getElementById(id);
-
-// ─── Init ─────────────────────────────────────────────────────
+// ─── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  initNav();
   initRoleChips();
+  initBulletRoleChips();
   initUploadZone();
+  initStats();
+  initSmoothScroll();
+
   $('analyze-btn').addEventListener('click', runAnalysis);
   $('download-btn').addEventListener('click', downloadReport);
   $('sample-btn').addEventListener('click', loadSampleResume);
-
-  // "Build My Resume →" button — scroll to builder section
-  const goToBuilder = $('go-to-builder-btn');
-  if (goToBuilder) {
-    goToBuilder.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const section = $('builder-section');
-      if (section) {
-        const top = section.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  }
+  $('rewrite-btn').addEventListener('click', rewriteBullet);
+  $('go-to-builder-btn').addEventListener('click', () => scrollTo('builder'));
+  initBuilder();
 });
 
-// ─── Smooth Scroll (Event Delegation — catches every link) ────
-document.addEventListener('click', e => {
-  const link = e.target.closest('a[href^="#"]');
-  if (!link) return;
-  const targetId = link.getAttribute('href');
-  const target   = document.querySelector(targetId);
-  if (!target) return;
-  e.preventDefault();
-  const offset = 80; // navbar height
-  const top = target.getBoundingClientRect().top + window.scrollY - offset;
+// ─── Smooth scroll ────────────────────────────────────────────
+function initSmoothScroll() {
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    const id = link.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    scrollTo(id);
+  });
+}
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 80;
   window.scrollTo({ top, behavior: 'smooth' });
-});
-
-function loadSampleResume() {
-  const sample = SAMPLE_RESUMES[selectedRole] || SAMPLE_RESUMES['fullstack'];
-  $('resume-text').value = sample;
-  uploadedText = sample;
-  $('resume-text').focus();
-  toast('Sample resume loaded! Click "Get My ATS Score" to analyze. ✅', 'success');
 }
 
-// ─── Role Chips ───────────────────────────────────────────────
+// ─── Navbar scroll effect ─────────────────────────────────────
+function initNav() {
+  window.addEventListener('scroll', () => {
+    $('navbar').style.boxShadow = window.scrollY > 10 ? '0 2px 40px rgba(0,0,0,0.4)' : 'none';
+  });
+}
+
+// ─── Animated stats ───────────────────────────────────────────
+function initStats() {
+  const counters = document.querySelectorAll('.stat-n');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      if (target === 0) { el.textContent = '0'; return; }
+      let current = 0;
+      const step = target / 40;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.round(current);
+        if (current >= target) clearInterval(timer);
+      }, 30);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => obs.observe(c));
+}
+
+// ─── Role chips ───────────────────────────────────────────────
 function initRoleChips() {
-  document.querySelectorAll('.role-chip').forEach(chip => {
+  document.querySelectorAll('#role-chips .role-chip').forEach(chip => {
     chip.addEventListener('click', () => {
-      document.querySelectorAll('.role-chip').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('#role-chips .role-chip').forEach(c => c.classList.remove('active'));
       chip.classList.add('active');
       selectedRole = chip.dataset.role;
     });
   });
 }
 
-// ─── File Upload ──────────────────────────────────────────────
+function initBulletRoleChips() {
+  document.querySelectorAll('#bullet-role-chips .role-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#bullet-role-chips .role-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      bulletSelectedRole = chip.dataset.role;
+    });
+  });
+}
+
+// ─── Upload zone ──────────────────────────────────────────────
 function initUploadZone() {
-  const zone = $('upload-zone'), fileIn = $('resume-file'), trigger = $('upload-trigger');
-  trigger.addEventListener('click', () => fileIn.click());
-  zone.addEventListener('click', e => { if (e.target !== trigger) fileIn.click(); });
-  zone.addEventListener('dragover',  e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  const zone   = $('upload-zone');
+  const fileIn = $('resume-file');
+
+  // Only the trigger span opens the dialog — stop bubbling to zone
+  $('upload-trigger').addEventListener('click', e => { e.stopPropagation(); fileIn.click(); });
+
+  // Zone click opens dialog only if not clicking the trigger
+  zone.addEventListener('click', e => {
+    if (e.target.id === 'upload-trigger') return;
+    fileIn.click();
+  });
+
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
   zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
-  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('drag-over'); handleFile(e.dataTransfer.files[0]); });
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+
   fileIn.addEventListener('change', () => handleFile(fileIn.files[0]));
 }
 
@@ -243,13 +302,9 @@ async function handleFile(file) {
   const fn = $('upload-filename');
   fn.textContent = `⏳ Reading ${file.name}...`;
   fn.style.display = 'block';
-  fn.style.background = 'rgba(99,102,241,0.1)';
-  fn.style.borderColor = 'rgba(99,102,241,0.3)';
-  fn.style.color = '#818cf8';
 
   try {
     let text = '';
-
     if (file.type === 'application/pdf') {
       text = await extractPdfText(file);
     } else {
@@ -257,444 +312,386 @@ async function handleFile(file) {
     }
 
     if (!text.trim()) {
-      toast('Could not extract text from this file. Please paste your resume text manually.', 'error');
-      fn.textContent = `⚠️ ${file.name} (paste text manually)`;
-      fn.style.background = 'rgba(239,68,68,0.08)';
-      fn.style.borderColor = 'rgba(239,68,68,0.3)';
-      fn.style.color = '#f87171';
+      toast('Could not extract text. Please paste your resume in the box below.', 'error');
+      fn.textContent = `⚠️ ${file.name} — paste text manually`;
+      fn.style.background = 'rgba(239,68,68,0.08)'; fn.style.color = '#f87171';
       return;
     }
 
     uploadedText = text;
     $('resume-text').value = text;
-
     fn.textContent = `✅ ${file.name} — text extracted!`;
-    fn.style.background = 'rgba(16,185,129,0.1)';
-    fn.style.borderColor = 'rgba(16,185,129,0.3)';
-    fn.style.color = '#10b981';
-    toast(`Resume loaded from ${file.name}! Click "Get My ATS Score" to analyze. 🎉`, 'success');
+    fn.style.background = 'rgba(16,185,129,0.1)'; fn.style.color = '#34d399';
+    toast(`Resume loaded from ${file.name}! 🎉`, 'success');
   } catch (err) {
-    console.error('File read error:', err);
-    fn.textContent = `⚠️ ${file.name} — paste text below manually`;
-    fn.style.background = 'rgba(239,68,68,0.08)';
-    fn.style.borderColor = 'rgba(239,68,68,0.3)';
-    fn.style.color = '#f87171';
-    toast('Could not read this file automatically. Please paste your resume text in the box below.', 'info');
+    fn.textContent = `⚠️ ${file.name} — paste text below`;
+    fn.style.background = 'rgba(239,68,68,0.08)'; fn.style.color = '#f87171';
+    toast('Could not read file automatically. Paste your text below.', 'info');
   }
 }
 
 function readAsText(file) {
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload  = e => resolve(e.target.result);
-    reader.onerror = reject;
-    reader.readAsText(file);
+    const r = new FileReader();
+    r.onload = e => resolve(e.target.result);
+    r.onerror = reject;
+    r.readAsText(file);
   });
 }
 
 async function extractPdfText(file) {
-  // Set worker path for pdf.js
-  if (typeof pdfjsLib !== 'undefined') {
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-  } else {
-    throw new Error('PDF.js not loaded');
-  }
-
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-  let fullText = '';
-
-  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-    const page    = await pdf.getPage(pageNum);
+  if (typeof pdfjsLib === 'undefined') throw new Error('PDF.js not loaded');
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const ab  = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: ab }).promise;
+  let full  = '';
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page    = await pdf.getPage(i);
     const content = await page.getTextContent();
-    const pageText = content.items.map(item => item.str).join(' ');
-    fullText += pageText + '\n';
+    full += content.items.map(it => it.str).join(' ') + '\n';
   }
-
-  return fullText.trim();
+  return full.trim();
 }
 
-// ─── Toast ────────────────────────────────────────────────────
-function toast(msg, type = 'info') {
-  const el = document.createElement('div');
-  el.className = `toast ${type}`;
-  el.textContent = msg;
-  document.body.appendChild(el);
-  setTimeout(() => {
-    el.style.animation = 'toastOut 0.3s ease forwards';
-    setTimeout(() => el.remove(), 300);
-  }, 4000);
+// ─── Sample resume ────────────────────────────────────────────
+function loadSampleResume() {
+  const sample = SAMPLE_RESUMES[selectedRole] || SAMPLE_RESUMES.frontend;
+  $('resume-text').value = sample;
+  uploadedText = sample;
+  toast('Sample resume loaded! Click "Get My ATS Score". ✅', 'success');
 }
 
-// ─── Main Analysis ────────────────────────────────────────────
+// ─── Run Analysis ─────────────────────────────────────────────
 async function runAnalysis() {
-  let resumeText = ($('resume-text').value || '').trim() || uploadedText.trim();
-  const jdText   = ($('jd-text').value || '').trim();
+  const resumeText = ($('resume-text').value || '').trim() || uploadedText.trim();
+  const jdText     = ($('jd-text').value || '').trim();
+
+  if (!resumeText) {
+    toast('Please paste your resume text or upload a file first.', 'error');
+    return;
+  }
 
   setLoading(true);
-  // Small delay so the button animation is visible
-  await new Promise(r => setTimeout(r, 600));
+  await new Promise(r => setTimeout(r, 800));
 
-  try {
-    const result = analyzeResume(resumeText, jdText, selectedRole);
-    analysisData  = result;
-    renderResults(result, !!jdText);
-    toast('Analysis complete! 🎉', 'success');
-  } catch(err) {
-    console.error(err);
-    toast('Something went wrong. Please try again.', 'error');
-  } finally {
-    setLoading(false);
-  }
+  const result = analyzeResume(resumeText, jdText, selectedRole);
+  renderResults(result);
+  setLoading(false);
+
+  setTimeout(() => scrollTo('results-content'), 400);
 }
 
 function setLoading(on) {
-  const btn = $('analyze-btn');
-  btn.disabled = on;
-  btn.querySelector('.btn-text').style.display    = on ? 'none' : 'flex';
-  btn.querySelector('.btn-loading').style.display = on ? 'flex' : 'none';
+  $('btn-text') && ($('analyze-btn').querySelector('.btn-text').style.display = on ? 'none' : 'flex');
+  $('analyze-btn').querySelector('.btn-loading').style.display = on ? 'flex' : 'none';
+  $('analyze-btn').disabled = on;
 }
 
-// ══════════════════════════════════════════════════════════════
-//  CORE ATS ENGINE — Pure JavaScript, No API
-// ══════════════════════════════════════════════════════════════
-function analyzeResume(resumeText, jdText, role) {
-  const text  = resumeText.toLowerCase();
-  const lines = resumeText.split('\n').map(l => l.trim()).filter(Boolean);
+// ─── ATS Engine ───────────────────────────────────────────────
+function analyzeResume(text, jd, role) {
+  const t = text.toLowerCase();
 
-  // 1. Skills Detection
-  const roleRequired  = ROLE_SKILLS[role] || ROLE_SKILLS['fullstack'];
-  const presentSkills = ALL_TECH_SKILLS.filter(s => text.includes(s.toLowerCase()));
-  const missingSkills = roleRequired.filter(s => !text.includes(s.toLowerCase()));
-  const matchedRoleSkills = roleRequired.filter(s => text.includes(s.toLowerCase()));
+  /* 1. Detect skills */
+  const roleSkills   = ROLE_SKILLS[role] || ROLE_SKILLS.frontend;
+  const presentSkills = roleSkills.filter(s => t.includes(s.toLowerCase()));
+  const missingSkills = roleSkills.filter(s => !t.includes(s.toLowerCase()));
 
-  // 2. Section Detection
-  const sectionsFound = KEY_SECTIONS.filter(s => text.includes(s));
-  const hasProjects    = text.includes('project');
-  const hasExperience  = text.includes('experience') || text.includes('work history') || text.includes('employment');
-  const hasEducation   = text.includes('education') || text.includes('degree') || text.includes('university') || text.includes('college');
-  const hasSummary     = text.includes('summary') || text.includes('objective') || text.includes('profile');
-  const hasGithub      = text.includes('github');
-  const hasLinkedin    = text.includes('linkedin');
-  const hasContact     = text.includes('@') || text.includes('phone') || text.includes('email') || /\d{10}/.test(text);
+  /* 2. Scores */
+  const skillScore  = Math.min(100, Math.round((presentSkills.length / roleSkills.length) * 100));
 
-  // 3. Action Verbs & Metrics
-  const foundActionVerbs  = ACTION_VERBS.filter(v => text.includes(v.toLowerCase()));
-  const foundWeakVerbs    = WEAK_VERBS.filter(v => text.includes(v.toLowerCase()));
-  const hasMetrics        = QUANTIFIER_PATTERNS.some(p => p.test(resumeText));
-  const bulletCount       = lines.filter(l => l.startsWith('-') || l.startsWith('•') || l.startsWith('*')).length;
-  const wordCount         = resumeText.split(/\s+/).length;
+  const hasSections = ['experience','education','project','skill'].filter(s => t.includes(s)).length;
+  const hasMetrics  = (text.match(/\d+[\s]?(%|k\+|x|hours|users|months|years|days|ms)/gi) || []).length;
+  const hasGithub   = /github\.com/.test(t);
+  const hasLinkedin = /linkedin\.com/.test(t);
+  const hasEmail    = /[\w.]+@[\w.]+\.\w+/.test(t);
+  const hasSummary  = /summary|objective|about/i.test(t);
+  const words       = text.split(/\s+/).length;
+  const hasActionVerbs = ACTION_VERBS.filter(v => t.includes(v)).length;
+  const hasWeakVerbs   = WEAK_VERBS.filter(v => t.includes(v)).length;
 
-  // 4. Score Breakdown
-  const skillsScore = Math.round((matchedRoleSkills.length / roleRequired.length) * 100);
-
-  let projectScore = 0;
-  if (hasProjects) projectScore += 40;
-  if (hasGithub)   projectScore += 25;
-  if (bulletCount >= 5) projectScore += 20;
-  if (hasMetrics)  projectScore += 15;
-  projectScore = Math.min(100, projectScore);
-
-  let experienceScore = 0;
-  if (hasExperience) experienceScore += 40;
-  if (hasEducation)  experienceScore += 20;
-  if (foundActionVerbs.length >= 3) experienceScore += 25;
-  if (hasMetrics) experienceScore += 15;
-  experienceScore = Math.min(100, experienceScore);
-
-  let formattingScore = 0;
-  if (hasContact)       formattingScore += 20;
-  if (hasSummary)       formattingScore += 15;
-  if (sectionsFound.length >= 3) formattingScore += 20;
-  if (wordCount >= 200 && wordCount <= 1000) formattingScore += 20;
-  if (hasLinkedin || hasGithub) formattingScore += 15;
-  if (foundWeakVerbs.length === 0) formattingScore += 10;
-  formattingScore = Math.min(100, formattingScore);
-
-  const atsScore = Math.round(
-    skillsScore    * 0.35 +
-    projectScore   * 0.25 +
-    experienceScore* 0.25 +
-    formattingScore* 0.15
+  const expScore  = Math.min(100, hasSections * 15 + hasMetrics * 8 + (hasActionVerbs * 6) + (hasSummary ? 10 : 0));
+  const projScore = Math.min(100, (t.includes('project') ? 30 : 0) + hasMetrics * 6 + (t.includes('github') ? 15 : 0) + (words > 200 ? 20 : 0) + hasActionVerbs * 4);
+  const fmtScore  = Math.min(100,
+    (hasEmail    ? 15 : 0) +
+    (hasGithub   ? 15 : 0) +
+    (hasLinkedin ? 15 : 0) +
+    (hasSummary  ? 20 : 0) +
+    (hasSections >= 3 ? 20 : hasSections * 5) +
+    (words >= 300 ? 15 : Math.round(words / 20))
   );
 
-  const scoreLabel =
-    atsScore >= 80 ? 'Excellent' :
-    atsScore >= 65 ? 'Good'      :
-    atsScore >= 45 ? 'Average'   : 'Needs Work';
+  const overall = Math.round(skillScore * 0.35 + expScore * 0.30 + projScore * 0.20 + fmtScore * 0.15);
 
-  // 5. Strengths & Weaknesses
-  const strengths = [];
-  const weaknesses = [];
+  /* 3. Strengths & weaknesses */
+  const strengths = [], weaknesses = [];
+  if (skillScore >= 70)   strengths.push(`Strong ${role} skill set — ${presentSkills.length}/${roleSkills.length} required skills detected`);
+  if (hasGithub)          strengths.push('GitHub profile link found — great for verifying your work');
+  if (hasMetrics >= 3)    strengths.push('Good use of measurable metrics — recruiters love numbers');
+  if (hasActionVerbs >= 3) strengths.push(`${hasActionVerbs} strong action verbs detected (e.g. engineered, deployed, optimized)`);
+  if (hasSummary)         strengths.push('Professional summary/objective section present');
+  if (words >= 350)       strengths.push('Resume has good length and detail');
 
-  if (matchedRoleSkills.length >= roleRequired.length * 0.7) strengths.push(`Strong match on key ${role} skills (${matchedRoleSkills.length}/${roleRequired.length} matched)`);
-  if (hasGithub)   strengths.push('GitHub profile linked — great for showcasing your code');
-  if (hasMetrics)  strengths.push('Resume includes quantifiable achievements and metrics');
-  if (hasProjects) strengths.push('Projects section present, demonstrating hands-on experience');
-  if (foundActionVerbs.length >= 5) strengths.push(`Strong action verb usage (${foundActionVerbs.length} found: ${foundActionVerbs.slice(0,3).join(', ')}...)`);
-  if (hasExperience && hasEducation) strengths.push('Both Education and Experience sections are present');
-  if (hasSummary)  strengths.push('Professional summary present — gives recruiters a quick overview');
+  if (skillScore < 70)    weaknesses.push(`Missing ${missingSkills.length} key ${role} skills: ${missingSkills.slice(0,4).join(', ')}...`);
+  if (!hasGithub)         weaknesses.push('No GitHub link found — hard for recruiters to verify your code');
+  if (hasMetrics < 2)     weaknesses.push('Very few quantifiable metrics — add numbers like "improved by 30%", "served 10K users"');
+  if (!hasSummary)        weaknesses.push('Missing professional summary/objective at the top');
+  if (hasWeakVerbs > 2)   weaknesses.push(`Replace weak phrases like "worked on", "helped with" with strong action verbs`);
+  if (words < 200)        weaknesses.push('Resume is too short — add more detail to projects and experience sections');
+  if (!hasLinkedin)       weaknesses.push('No LinkedIn profile link found');
 
-  if (!hasMetrics)  weaknesses.push('No quantifiable metrics found (add numbers like "improved by 30%", "10K users")');
-  if (missingSkills.length > 3) weaknesses.push(`Missing ${missingSkills.length} key skills for ${role} role: ${missingSkills.slice(0, 3).join(', ')}...`);
-  if (!hasGithub)   weaknesses.push('No GitHub link found — hard to verify your coding ability');
-  if (foundWeakVerbs.length > 0) weaknesses.push(`Weak verb usage detected: "${foundWeakVerbs[0]}" — use stronger action verbs`);
-  if (!hasSummary)  weaknesses.push('Missing professional summary/objective at the top of your resume');
-  if (wordCount < 200) weaknesses.push('Resume is too short. Add more detail to your projects and experience.');
-  if (!hasContact)  weaknesses.push('Missing contact information (email, phone, or LinkedIn)');
-
-  // 6. Smart Suggestions
+  /* 4. Suggestions */
   const suggestions = [];
-  if (!hasMetrics)  suggestions.push(SUGGESTIONS_BANK.noMetrics);
-  if (!hasGithub)   suggestions.push(SUGGESTIONS_BANK.noGithub);
-  if (foundWeakVerbs.length > 0) suggestions.push(SUGGESTIONS_BANK.weakVerbs);
-  if (!hasProjects) suggestions.push(SUGGESTIONS_BANK.noProjects);
-  if (!hasSummary)  suggestions.push(SUGGESTIONS_BANK.noSummary);
-  if (!hasLinkedin && !hasGithub)  suggestions.push(SUGGESTIONS_BANK.noLinks);
-  if (missingSkills.length > 0) suggestions.push(SUGGESTIONS_BANK.missingRole(missingSkills[0]));
-  if (wordCount < 250) suggestions.push(SUGGESTIONS_BANK.shortResume);
-  suggestions.push(SUGGESTIONS_BANK.addCert);
+  if (hasMetrics < 2)   suggestions.push({ icon: '📊', text: 'Add quantifiable achievements: e.g. "Improved load time by 40%" or "Served 10K+ users"' });
+  if (!hasGithub)       suggestions.push({ icon: '🔗', text: 'Include your GitHub profile URL — recruiters always check your actual code' });
+  if (hasWeakVerbs > 1) suggestions.push({ icon: '✍️', text: 'Replace weak phrases like "worked on" or "helped with" — use "architected", "engineered", "deployed"' });
+  if (!hasSummary)      suggestions.push({ icon: '📝', text: 'Add a 2–3 line professional summary at the top to immediately capture recruiter attention' });
+  if (skillScore < 60)  suggestions.push({ icon: '🎯', text: `Add key ${role} skills to your projects or experience: ${missingSkills.slice(0,3).join(', ')}` });
+  if (words < 300)      suggestions.push({ icon: '📋', text: 'Expand your resume — add measurable responsibilities and impact for each role/project' });
+  if (!hasLinkedin)     suggestions.push({ icon: '💼', text: 'Add your LinkedIn URL — it builds credibility and helps recruiters connect with you' });
+  suggestions.push({ icon: '🚀', text: 'Add a dedicated "Key Achievements" or "Impact" section to highlight your best wins upfront' });
 
-  // 7. Enhanced Bullets (template-based improvement examples)
-  const enhanced_bullets = generateEnhancedBullets(resumeText, role, foundActionVerbs);
+  /* 5. Enhanced bullets */
+  const templates = BULLET_TEMPLATES[role] || BULLET_TEMPLATES.frontend;
+  const bullets   = templates.slice(0, 4).map(t =>
+    t.replace('{n}', Math.floor(Math.random()*10)+5)
+     .replace('{p}', Math.floor(Math.random()*30)+20)
+     .replace('{k}', Math.floor(Math.random()*9)+1)
+     .replace('{task}', 'sentiment analysis')
+  );
 
-  // 8. Job Match (if JD provided)
-  let job_match = null;
-  if (jdText) {
-    const jdWords = extractKeywords(jdText.toLowerCase());
-    const resumeWords = extractKeywords(text);
-    const matched = jdWords.filter(w => resumeWords.includes(w));
-    const missing = jdWords.filter(w => !resumeWords.includes(w)).slice(0, 15);
-    job_match = {
-      percentage: Math.min(100, Math.round((matched.length / Math.max(jdWords.length, 1)) * 100)),
-      matched_keywords: matched.slice(0, 15),
-      missing_keywords: missing
-    };
+  /* 6. Job Description Match */
+  let match = null;
+  if (jd) {
+    const jdWords = [...new Set(jd.toLowerCase().match(/\b\w{4,}\b/g) || [])].filter(w => !STOP_WORDS.has(w));
+    const matched = jdWords.filter(w => t.includes(w));
+    const missing = jdWords.filter(w => !t.includes(w)).slice(0, 16);
+    const pct = Math.min(100, Math.round((matched.length / Math.max(jdWords.length, 1)) * 100));
+    match = { percentage: pct, matched_keywords: matched.slice(0,16), missing_keywords: missing };
   }
 
   return {
-    ats_score: atsScore,
-    score_label: scoreLabel,
-    score_breakdown: {
-      skills: skillsScore,
-      projects: projectScore,
-      experience: experienceScore,
-      formatting: formattingScore
-    },
-    strengths:  strengths.slice(0, 5),
-    weaknesses: weaknesses.slice(0, 5),
-    present_skills: presentSkills.slice(0, 20),
-    missing_skills: missingSkills.slice(0, 10),
-    suggestions: suggestions.slice(0, 6),
-    enhanced_bullets,
-    job_match,
-    role_analysis_summary: `Resume analyzed for ${role} role. Score: ${atsScore}/100 — ${scoreLabel}.`
+    overall, skillScore, expScore, projScore, fmtScore,
+    presentSkills, missingSkills, strengths, weaknesses,
+    suggestions, bullets, match
   };
 }
 
-// ─── Keyword Extractor (for JD matching) ─────────────────────
-function extractKeywords(text) {
-  const stopWords = new Set(['the','a','an','and','or','but','in','on','at','to','for','is','are','was','were','be','been','with','that','this','it','from','by','as','of','we','you','your','our','their','have','has','will','can','should','must','may','would','could','about','which','who','what','when','where','how']);
-  return [...new Set(
-    text.split(/[\s,.\-–:;()\/\[\]]+/)
-      .map(w => w.replace(/[^a-z0-9.#+]/g, ''))
-      .filter(w => w.length > 2 && !stopWords.has(w))
-  )];
-}
-
-// ─── Enhanced Bullet Generator ────────────────────────────────
-function generateEnhancedBullets(resumeText, role, foundVerbs) {
-  const templates = {
-    frontend: [
-      'Architected a responsive React application with TypeScript, reducing load time by 40% through code splitting and lazy loading',
-      'Engineered a reusable component library of 25+ UI elements, cutting development time by 30% across 3 product teams',
-      'Optimized frontend performance achieving 95+ Lighthouse score by implementing caching strategies and image optimization',
-      'Integrated RESTful APIs with real-time WebSocket support, delivering live updates across 5 key user-facing features',
-      'Led migration from JavaScript to TypeScript, reducing runtime bugs by 60% and improving developer experience'
-    ],
-    backend: [
-      'Designed and deployed RESTful APIs serving 100K+ daily requests with 99.9% uptime using Node.js and PostgreSQL',
-      'Architected microservices infrastructure with Docker/Kubernetes, enabling independent scaling and reducing downtime by 80%',
-      'Optimized critical database queries using indexing strategies, reducing average response time from 800ms to 120ms',
-      'Built secure authentication system handling 2M+ token validations/month using JWT, OAuth2, and Redis session caching',
-      'Automated deployment pipeline with GitHub Actions CI/CD, reducing release cycle from 3 days to under 2 hours'
-    ],
-    fullstack: [
-      'Developed full-stack e-commerce platform using React and Node.js, processing $50K+ monthly transactions for 5,000+ users',
-      'Engineered real-time collaborative tools using WebSockets, reducing latency to under 50ms for 1,000+ concurrent users',
-      'Architected PostgreSQL schema and Redis caching layer, improving API response times by 65% under peak load',
-      'Built and deployed CI/CD pipeline with Docker, reducing deployment time from 2 hours to 15 minutes',
-      'Led team of 3 engineers to deliver 8 major features ahead of schedule, achieving 4.8/5 customer satisfaction score'
-    ],
-    ai: [
-      'Fine-tuned LLaMA-based LLM on domain-specific datasets, achieving 92% accuracy on classification tasks (vs 78% baseline)',
-      'Built NLP pipeline using spaCy and Transformers, processing 500K+ documents/day with 94% entity extraction precision',
-      'Developed computer vision model using PyTorch that reduced defect detection time by 70% in manufacturing pipeline',
-      'Deployed ML models to production using FastAPI and Docker, serving 10K+ real-time predictions per day',
-      'Engineered feature engineering pipeline with Pandas/NumPy, improving model AUC-ROC by 12% over baseline'
-    ],
-    devops: [
-      'Architected Kubernetes cluster on AWS EKS, managing 50+ microservices with auto-scaling and 99.99% uptime',
-      'Implemented Infrastructure as Code using Terraform, reducing provisioning time from days to 30 minutes',
-      'Built comprehensive monitoring stack with Prometheus and Grafana, reducing MTTR from 4 hours to 20 minutes',
-      'Designed multi-stage CI/CD pipelines with GitHub Actions, cutting deployment failures by 75% and release time by 60%',
-      'Automated backup and disaster recovery procedures, achieving RPO of 15 minutes and RTO of 1 hour'
-    ]
-  };
-  return (templates[role] || templates['fullstack']).slice(0, 5);
-}
+const STOP_WORDS = new Set(['this','that','with','have','will','from','they','been','were','their','what','when','where','which','your','more','also','into','than','other','some','these','those','there','about','each','then','over','just','like','only','many','most','both','such','well','even','back','come','could','should','would','after','before','being','doing','going','having','looking','making','taking','using','working']);
 
 // ─── Render Results ───────────────────────────────────────────
-function renderResults(data, hasJD) {
-  $('empty-state').style.display     = 'none';
+function renderResults(data) {
+  $('empty-state').style.display  = 'none';
   $('results-content').style.display = 'flex';
   $('results-content').style.flexDirection = 'column';
-  $('results-content').style.gap = '18px';
+  $('results-content').style.gap = '16px';
 
-  renderScoreCard(data);
-  renderSW(data);
-  renderSkills(data);
-  renderSuggestions(data);
-  renderBullets(data);
+  // Score
+  const circ = 2 * Math.PI * 50;
+  setTimeout(() => {
+    $('ring-fill').setAttribute('stroke-dasharray', `${(data.overall / 100) * circ} ${circ}`);
+    const color = data.overall >= 80 ? '#10b981' : data.overall >= 60 ? '#6366f1' : data.overall >= 40 ? '#f59e0b' : '#ef4444';
+    $('ring-fill').style.stroke = color;
+  }, 100);
 
-  if (hasJD && data.job_match) renderMatchCard(data.job_match);
-  else $('match-card').style.display = 'none';
+  animateNumber($('score-number'), 0, data.overall, 1200);
 
-  $('results-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+  const badge = data.overall >= 80 ? ['excellent','🔥 Excellent'] : data.overall >= 60 ? ['good','✅ Good'] : data.overall >= 40 ? ['average','⚠️ Average'] : ['poor','❌ Needs Work'];
+  $('score-badge').className = `score-badge ${badge[0]}`;
+  $('score-badge').textContent = badge[1];
 
-function renderScoreCard(data) {
-  const score = data.ats_score || 0;
-  const circ  = 2 * Math.PI * 50;
-  const svg   = $('score-ring-svg');
+  // Score bars
+  const bars = [
+    { label: 'Skills',      score: data.skillScore, color: '#6366f1' },
+    { label: 'Experience',  score: data.expScore,   color: '#8b5cf6' },
+    { label: 'Projects',    score: data.projScore,  color: '#06b6d4' },
+    { label: 'Formatting',  score: data.fmtScore,   color: '#10b981' },
+  ];
+  $('score-breakdown').innerHTML = bars.map(b => `
+    <div class="score-bar-row">
+      <span>${b.label}</span>
+      <div class="bar-track"><div class="bar-fill" style="background:${b.color}" data-w="${b.score}"></div></div>
+      <span class="pct">${b.score}</span>
+    </div>`).join('');
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+  }, 200);
 
-  if (!svg.querySelector('defs')) {
-    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    defs.innerHTML = `<linearGradient id="score-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#818cf8"/><stop offset="100%" stop-color="#06b6d4"/>
-    </linearGradient>`;
-    svg.insertBefore(defs, svg.firstChild);
+  // Match
+  if (data.match) {
+    $('match-card').style.display = 'block';
+    $('match-pct').textContent = `${data.match.percentage}%`;
+    setTimeout(() => { $('match-bar').style.width = `${data.match.percentage}%`; }, 100);
+    $('matched-tags').innerHTML = data.match.matched_keywords.map(k => `<span class="kw-tag matched">${k}</span>`).join('');
+    $('missing-tags').innerHTML = data.match.missing_keywords.map(k  => `<span class="kw-tag missing">${k}</span>`).join('');
   }
 
-  $('score-number').textContent = '0';
-  $('ring-fill').style.strokeDasharray = `0 ${circ}`;
+  // SW
+  $('strengths-list').innerHTML  = data.strengths.map(s => `<li>${s}</li>`).join('');
+  $('weaknesses-list').innerHTML = data.weaknesses.map(w => `<li>${w}</li>`).join('');
 
-  const dur = 1400, t0 = performance.now(), filled = (score / 100) * circ;
-  const tick = now => {
-    const t = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - t, 3);
-    $('score-number').textContent = Math.round(e * score);
-    $('ring-fill').style.strokeDasharray = `${e * filled} ${circ}`;
-    if (t < 1) requestAnimationFrame(tick);
-  };
-  requestAnimationFrame(tick);
+  // Skills
+  $('user-skills').innerHTML    = data.presentSkills.map(s => `<span class="skill-tag present">${s}</span>`).join('');
+  $('missing-skills').innerHTML = data.missingSkills.map(s => `<span class="skill-tag absent">${s}</span>`).join('');
 
-  $('score-badge').textContent = data.score_label || 'Analyzed';
-
-  const bd = data.score_breakdown || {};
-  const rows = [
-    { label:'Skills',     val: bd.skills     ?? 0, color:'#818cf8' },
-    { label:'Projects',   val: bd.projects    ?? 0, color:'#8b5cf6' },
-    { label:'Experience', val: bd.experience  ?? 0, color:'#06b6d4' },
-    { label:'Formatting', val: bd.formatting  ?? 0, color:'#10b981' },
-  ];
-  $('score-breakdown').innerHTML = rows.map(r => `
-    <div class="breakdown-row">
-      <div class="breakdown-label-row"><span>${r.label}</span><span>${r.val}/100</span></div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:${r.val}%;background:linear-gradient(90deg,${r.color},${r.color}88)"></div>
-      </div>
-    </div>`).join('');
-}
-
-function renderMatchCard(match) {
-  $('match-card').style.display = 'block';
-  const pct = match.percentage || 0;
-  $('match-pct').textContent = `${pct}%`;
-  setTimeout(() => { $('match-bar').style.width = `${pct}%`; }, 100);
-  $('matched-tags').innerHTML = (match.matched_keywords || []).map(k => `<span class="keyword-tag matched">${k}</span>`).join('');
-  $('missing-tags').innerHTML = (match.missing_keywords || []).map(k => `<span class="keyword-tag missing">${k}</span>`).join('');
-}
-
-function renderSW(data) {
-  $('strengths-list').innerHTML  = (data.strengths  || []).map(s => `<li>${s}</li>`).join('');
-  $('weaknesses-list').innerHTML = (data.weaknesses || []).map(w => `<li>${w}</li>`).join('');
-}
-
-function renderSkills(data) {
-  $('user-skills').innerHTML    = (data.present_skills || []).map(s => `<span class="skill-tag present">${s}</span>`).join('');
-  $('missing-skills').innerHTML = (data.missing_skills || []).map(s => `<span class="skill-tag absent">${s}</span>`).join('');
-}
-
-function renderSuggestions(data) {
-  const icons = ['💡','🎯','📊','✍️','🚀','📈'];
-  $('suggestions-list').innerHTML = (data.suggestions || []).map((s, i) => `
+  // Suggestions
+  $('suggestions-list').innerHTML = data.suggestions.map(s => `
     <div class="suggestion-item">
-      <span class="suggestion-icon">${icons[i % icons.length]}</span><span>${s}</span>
+      <span class="sug-icon">${s.icon}</span>
+      <span class="sug-text">${s.text}</span>
     </div>`).join('');
+
+  // Bullets
+  $('bullets-list').innerHTML = data.bullets.map(b => `<div class="bullet-item">${b}</div>`).join('');
+
+  toast(`Analysis complete! Your ATS score: ${data.overall}/100 🎯`, data.overall >= 60 ? 'success' : 'info');
 }
 
-function renderBullets(data) {
-  $('bullets-list').innerHTML = (data.enhanced_bullets || []).map(b => `<div class="bullet-item">${b}</div>`).join('');
+function animateNumber(el, from, to, duration) {
+  const start = performance.now();
+  const update = now => {
+    const t = Math.min((now - start) / duration, 1);
+    el.textContent = Math.round(from + (to - from) * easeOut(t));
+    if (t < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+const easeOut = t => 1 - Math.pow(1 - t, 3);
+
+// ─── AI Bullet Rewriter (Killer Feature) ──────────────────────
+async function rewriteBullet() {
+  const input = ($('bullet-input').value || '').trim();
+  if (!input) { toast('Please paste a bullet point to rewrite.', 'error'); return; }
+
+  const btn = $('rewrite-btn');
+  btn.querySelector('.btn-text').style.display = 'none';
+  btn.querySelector('.btn-loading').style.display = 'flex';
+  btn.disabled = true;
+
+  await new Promise(r => setTimeout(r, 700));
+
+  const role      = bulletSelectedRole;
+  const templates = BULLET_TEMPLATES[role] || BULLET_TEMPLATES.frontend;
+
+  // Extract context from the input
+  const hasVerb     = ACTION_VERBS.find(v => input.toLowerCase().includes(v));
+  const techMatches = (input.match(/\b(react|node|python|aws|docker|sql|api|mongodb|express|java|typescript|next\.?js|postgresql|redis|kubernetes)\b/gi) || []).join(', ') || 'modern technologies';
+  const numbers     = (input.match(/\d+/g) || []);
+
+  const rewrites = [
+    generateRewrite(input, role, 1, techMatches, numbers),
+    generateRewrite(input, role, 2, techMatches, numbers),
+    generateRewrite(input, role, 3, techMatches, numbers),
+  ];
+
+  $('rewrite-results').innerHTML = rewrites.map((r, i) => `
+    <div class="rewrite-card">
+      <span class="rewrite-num">Version ${i+1}</span>
+      <p>${r}</p>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('${r.replace(/'/g,"\\'")}').then(()=>toast('Copied!','success'))">📋 Copy</button>
+    </div>`).join('');
+
+  $('rewrite-output').style.display = 'block';
+
+  btn.querySelector('.btn-text').style.display = 'flex';
+  btn.querySelector('.btn-loading').style.display = 'none';
+  btn.disabled = false;
+
+  toast('3 powerful rewrites generated! ✨', 'success');
 }
 
-// ─── PDF Report ───────────────────────────────────────────────
+function generateRewrite(input, role, version, tech, nums) {
+  const verbs = { 1: 'Engineered', 2: 'Developed', 3: 'Architected' };
+  const verb  = verbs[version];
+  const n     = nums.length > 0 ? nums[0] : (Math.floor(Math.random()*8)+3);
+  const p     = Math.floor(Math.random()*35)+20;
+  const k     = Math.floor(Math.random()*9)+1;
+
+  const templates = {
+    1: `${verb} ${tech || 'full-stack'} solution based on original task, resulting in ${p}% improvement in performance metrics and serving ${k}K+ end users`,
+    2: `${verb} and deployed scalable ${tech || 'web application'} feature, reducing processing time by ${p}% and improving user satisfaction score by ${Math.floor(p*0.6)}%`,
+    3: `${verb} high-impact ${tech || 'software component'} using best practices, delivering ${n} key features while maintaining ${Math.floor(90+Math.random()*9)}% code test coverage`,
+  };
+
+  // Try to incorporate original context
+  const lower = input.toLowerCase();
+  let base = templates[version];
+
+  if (lower.includes('react') || lower.includes('frontend') || lower.includes('ui')) {
+    base = base.replace('solution based on original task', 'React-based UI with responsive design');
+  } else if (lower.includes('api') || lower.includes('backend') || lower.includes('server')) {
+    base = base.replace('solution based on original task', 'RESTful API with robust error handling');
+  } else if (lower.includes('database') || lower.includes('sql') || lower.includes('mongodb')) {
+    base = base.replace('solution based on original task', 'database schema with optimized queries');
+  } else if (lower.includes('deploy') || lower.includes('docker') || lower.includes('aws')) {
+    base = base.replace('solution based on original task', 'containerized deployment pipeline');
+  } else if (lower.includes('test') || lower.includes('bug') || lower.includes('fix')) {
+    base = base.replace('solution based on original task', 'automated testing suite');
+  }
+
+  return base;
+}
+
+// ─── Download Report ──────────────────────────────────────────
 function downloadReport() {
-  if (!analysisData) { toast('Run an analysis first.', 'error'); return; }
-  const d = analysisData;
-  const jm = d.job_match ? `
-    <h2>🔍 Job Match: ${d.job_match.percentage}%</h2>
-    <h3>Matched</h3><p>${(d.job_match.matched_keywords||[]).join(' · ')}</p>
-    <h3>Missing</h3><p>${(d.job_match.missing_keywords||[]).join(' · ')}</p>` : '';
+  const score   = $('score-number').textContent;
+  const strList = [...document.querySelectorAll('#strengths-list li')].map(el => el.textContent);
+  const weakList = [...document.querySelectorAll('#weaknesses-list li')].map(el => el.textContent);
+  const sugList  = [...document.querySelectorAll('.suggestion-item .sug-text')].map(el => el.textContent);
+  const bullList = [...document.querySelectorAll('.bullet-item')].map(el => el.textContent.replace('▸ ',''));
 
-  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>ResumeIQ Report</title>
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>ATS Report</title>
 <style>
-  body{font-family:Arial,sans-serif;max-width:800px;margin:0 auto;padding:40px;color:#1e293b}
-  h1{color:#6366f1;font-size:2rem} .sub{color:#64748b;margin-bottom:32px}
-  h2{color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:8px;margin-top:32px} h3{color:#334155;margin-top:16px}
-  .big{font-size:4rem;font-weight:900;color:#6366f1;text-align:center;margin:12px 0}
-  .lbl{text-align:center;color:#64748b;margin-bottom:24px}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  .box{padding:12px;border:1px solid #e2e8f0;border-radius:8px}
-  ul{padding-left:20px} li{margin-bottom:6px;color:#475569}
-  .badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:.75rem;font-weight:600;margin:3px}
-  .blue{background:#ede9fe;color:#5b21b6} .orange{background:#fef9c3;color:#854d0e}
-  .bullet{padding:8px 12px;border-left:3px solid #6366f1;margin:8px 0;background:#f8f7ff;font-size:.9rem}
-  .footer{margin-top:40px;text-align:center;color:#94a3b8;font-size:.8rem;border-top:1px solid #e2e8f0;padding-top:16px}
+  @page{margin:0}
+  body{font-family:Arial,sans-serif;max-width:780px;margin:0 auto;padding:48px;color:#1e293b;font-size:13px;line-height:1.65;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  h1{font-size:1.8rem;font-weight:800;color:#1e293b;border-bottom:3px solid #6366f1;padding-bottom:8px;margin-bottom:4px}
+  .score-big{font-size:3.5rem;font-weight:900;color:#6366f1;margin:16px 0 4px}
+  h2{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:4px;margin:24px 0 10px}
+  ul{padding-left:18px;margin:0}
+  li{margin-bottom:5px}
+  .good{color:#059669} .bad{color:#dc2626} .sug{color:#6366f1}
+  .footer{margin-top:40px;padding-top:16px;border-top:1px solid #e2e8f0;color:#94a3b8;font-size:.75rem;text-align:center}
+  @media print{@page{margin:0}body{padding:48px}}
 </style></head><body>
-  <h1>ResumeIQ Analysis Report</h1>
-  <p class="sub">Generated on ${new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</p>
-  <h2>🎯 ATS Score</h2><div class="big">${d.ats_score}/100</div><div class="lbl">${d.score_label}</div>
-  <h2>📊 Score Breakdown</h2><div class="grid">
-    ${Object.entries(d.score_breakdown||{}).map(([k,v])=>`<div class="box"><strong>${k[0].toUpperCase()+k.slice(1)}</strong>: ${v}/100</div>`).join('')}
-  </div>
-  <h2>✅ Strengths & ❌ Weaknesses</h2><div class="grid">
-    <div><h3>Strengths</h3><ul>${(d.strengths||[]).map(s=>`<li>${s}</li>`).join('')}</ul></div>
-    <div><h3>Weaknesses</h3><ul>${(d.weaknesses||[]).map(w=>`<li>${w}</li>`).join('')}</ul></div>
-  </div>
-  <h2>🛠 Skills</h2>
-  <h3>Present</h3>${(d.present_skills||[]).map(s=>`<span class="badge blue">${s}</span>`).join('')}
-  <h3>Missing for Role</h3>${(d.missing_skills||[]).map(s=>`<span class="badge orange">${s}</span>`).join('')}
-  ${jm}
-  <h2>💡 AI Suggestions</h2><ul>${(d.suggestions||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
-  <h2>🚀 Enhanced Bullet Points</h2>${(d.enhanced_bullets||[]).map(b=>`<div class="bullet">→ ${b}</div>`).join('')}
-  <div class="footer">Generated by ResumeIQ — Open Source AI Resume Analyzer</div>
+<h1>📊 ResumeIQ ATS Analysis Report</h1>
+<p style="color:#64748b;font-size:.85rem">Generated on ${new Date().toLocaleDateString()}</p>
+<div class="score-big">${score}<span style="font-size:1.5rem;color:#94a3b8">/100</span></div>
+<p style="font-size:.9rem;color:#64748b">ATS Compatibility Score</p>
+<h2>✅ Strengths</h2><ul class="good">${strList.map(s=>`<li>${s}</li>`).join('')}</ul>
+<h2>❌ Weaknesses</h2><ul class="bad">${weakList.map(w=>`<li>${w}</li>`).join('')}</ul>
+<h2>💡 AI Improvement Suggestions</h2><ul class="sug">${sugList.map(s=>`<li>${s}</li>`).join('')}</ul>
+<h2>🚀 AI-Enhanced Bullet Points</h2><ul>${bullList.map(b=>`<li>${b}</li>`).join('')}</ul>
+<div class="footer">Generated by ResumeIQ — 100% Client-Side · No Data Sent to Servers</div>
 </body></html>`;
 
   const win = window.open('', '_blank');
-  if (!win) { toast('Allow pop-ups to download the report.', 'error'); return; }
-  win.document.write(html); win.document.close();
-  setTimeout(() => win.print(), 500);
+  if (!win) { toast('Allow pop-ups to download.', 'error'); return; }
+  win.document.write(html);
+  win.document.close();
+  setTimeout(() => {
+    win.print();
+    toast('💡 In print dialog → More Settings → uncheck "Headers and footers" → Save as PDF', 'info');
+  }, 400);
 }
 
-// ══════════════════════════════════════════════════════════════
-//  RESUME BUILDER
-// ══════════════════════════════════════════════════════════════
-let expCount  = 0;
-let projCount = 0;
+// ─── Toast ────────────────────────────────────────────────────
+function toast(msg, type = 'info', duration = 4000) {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  $('toast-container').appendChild(el);
+  setTimeout(() => {
+    el.style.animation = 'toastOut 0.3s ease forwards';
+    setTimeout(() => el.remove(), 300);
+  }, duration);
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Builder tabs
+// ═══════════════════════════════════════════════════════════════
+//  RESUME BUILDER
+// ═══════════════════════════════════════════════════════════════
+let expCount = 0, projCount = 0;
+
+function initBuilder() {
+  // Tabs
   document.querySelectorAll('.btab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.btab').forEach(t => t.classList.remove('active'));
@@ -704,53 +701,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Add experience
+  // Add initial entries
   $('add-exp-btn').addEventListener('click', addExperience);
-  addExperience(); // start with one entry
-
-  // Add project
   $('add-proj-btn').addEventListener('click', addProject);
-  addProject(); // start with one entry
+  addExperience();
+  addProject();
 
-  // Preview
+  // Buttons
   $('builder-preview-btn').addEventListener('click', () => {
     const html = buildResumeHTML();
     if (!html) return;
     $('resume-preview-content').innerHTML = html;
     $('preview-modal').style.display = 'grid';
   });
-
-  // Close preview
   $('preview-close').addEventListener('click', () => $('preview-modal').style.display = 'none');
   $('preview-modal').addEventListener('click', e => { if (e.target === $('preview-modal')) $('preview-modal').style.display = 'none'; });
-
-  // Generate & Download
   $('builder-generate-btn').addEventListener('click', generateAndDownload);
-
-  // Preview Download
   $('preview-download-btn').addEventListener('click', printResume);
-});
+}
 
 function addExperience() {
   expCount++;
   const id = `exp${expCount}`;
   const div = document.createElement('div');
-  div.className = 'exp-item';
-  div.id = id;
+  div.className = 'exp-item'; div.id = id;
   div.innerHTML = `
     <div class="item-header">
       <h5>Experience #${expCount}</h5>
-      <button class="btn-remove" onclick="removeItem('${id}')">✕ Remove</button>
+      <button class="btn-remove" onclick="document.getElementById('${id}').remove()">✕ Remove</button>
     </div>
     <div class="exp-grid">
-      <div class="form-group"><label class="form-label">Job Title</label><input class="text-input" id="${id}-title" placeholder="Web Development Intern" /></div>
-      <div class="form-group"><label class="form-label">Company</label><input class="text-input" id="${id}-company" placeholder="Tech Company" /></div>
-      <div class="form-group"><label class="form-label">Location</label><input class="text-input" id="${id}-loc" placeholder="Remote / Chennai" /></div>
-      <div class="form-group"><label class="form-label">Duration</label><input class="text-input" id="${id}-date" placeholder="Jan 2024 – Mar 2024" /></div>
+      <div class="form-group" style="padding:0"><label class="form-label">Job Title</label><input class="text-input" id="${id}-title" placeholder="Web Dev Intern"></div>
+      <div class="form-group" style="padding:0"><label class="form-label">Company</label><input class="text-input" id="${id}-company" placeholder="Tech Co."></div>
+      <div class="form-group" style="padding:0"><label class="form-label">Location</label><input class="text-input" id="${id}-loc" placeholder="Remote"></div>
+      <div class="form-group" style="padding:0"><label class="form-label">Duration</label><input class="text-input" id="${id}-date" placeholder="Jan–Mar 2024"></div>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="padding:0">
       <label class="form-label">Responsibilities (one per line)</label>
-      <textarea class="text-input" id="${id}-desc" rows="4" placeholder="- Developed responsive web pages using React and Node.js&#10;- Integrated REST APIs for dynamic data rendering&#10;- Reduced load time by 30% through optimization"></textarea>
+      <textarea class="text-input" id="${id}-desc" rows="4" placeholder="- Built responsive pages using React&#10;- Integrated REST APIs&#10;- Reduced load time by 30%"></textarea>
     </div>`;
   $('exp-list').appendChild(div);
 }
@@ -759,206 +747,84 @@ function addProject() {
   projCount++;
   const id = `proj${projCount}`;
   const div = document.createElement('div');
-  div.className = 'proj-item';
-  div.id = id;
+  div.className = 'proj-item'; div.id = id;
   div.innerHTML = `
     <div class="item-header">
       <h5>Project #${projCount}</h5>
-      <button class="btn-remove" onclick="removeItem('${id}')">✕ Remove</button>
+      <button class="btn-remove" onclick="document.getElementById('${id}').remove()">✕ Remove</button>
     </div>
     <div class="exp-grid">
-      <div class="form-group"><label class="form-label">Project Name</label><input class="text-input" id="${id}-name" placeholder="Full Stack Web App" /></div>
-      <div class="form-group"><label class="form-label">Tech Stack</label><input class="text-input" id="${id}-tech" placeholder="React, Node.js, PostgreSQL" /></div>
+      <div class="form-group" style="padding:0"><label class="form-label">Project Name</label><input class="text-input" id="${id}-name" placeholder="E-Commerce App"></div>
+      <div class="form-group" style="padding:0"><label class="form-label">Tech Stack</label><input class="text-input" id="${id}-tech" placeholder="React, Node.js, PostgreSQL"></div>
     </div>
-    <div class="form-group">
+    <div class="form-group" style="padding:0">
       <label class="form-label">Description (one bullet per line)</label>
-      <textarea class="text-input" id="${id}-desc" rows="3" placeholder="- Built a task manager with real-time updates&#10;- Deployed on AWS with 99.9% uptime"></textarea>
+      <textarea class="text-input" id="${id}-desc" rows="3" placeholder="- Built full-stack app with 500+ users&#10;- Deployed on AWS with 99.9% uptime"></textarea>
     </div>`;
   $('proj-list').appendChild(div);
-}
-
-function removeItem(id) {
-  const el = $(id);
-  if (el) el.remove();
 }
 
 function getVal(id) { const el = $(id); return el ? el.value.trim() : ''; }
 
 function buildResumeHTML() {
   const name = getVal('b-name');
-  if (!name) { toast('Please enter your name in the Personal tab.', 'error'); return null; }
+  if (!name) { toast('Enter your name in the Personal tab.', 'error'); return null; }
 
-  // Contact line
-  const contactParts = [
-    getVal('b-email'), getVal('b-phone'), getVal('b-location'),
-    getVal('b-linkedin'), getVal('b-github')
-  ].filter(Boolean);
+  const contacts = [getVal('b-email'), getVal('b-phone'), getVal('b-location'), getVal('b-linkedin'), getVal('b-github')].filter(Boolean);
+  const skillRows = [['Languages', getVal('b-lang')], ['Frontend', getVal('b-frontend')], ['Backend', getVal('b-backend')], ['Database', getVal('b-db')], ['DevOps/Cloud', getVal('b-devops')], ['Tools', getVal('b-tools')]].filter(([,v]) => v);
+  const exps  = [...document.querySelectorAll('.exp-item')].map(el => ({ id:el.id, title:getVal(`${el.id}-title`), company:getVal(`${el.id}-company`), loc:getVal(`${el.id}-loc`), date:getVal(`${el.id}-date`), desc:getVal(`${el.id}-desc`) })).filter(e => e.title||e.company);
+  const projs  = [...document.querySelectorAll('.proj-item')].map(el => ({ name:getVal(`${el.id}-name`), tech:getVal(`${el.id}-tech`), desc:getVal(`${el.id}-desc`) })).filter(p => p.name);
 
-  // Skills
-  const skillRows = [
-    ['Languages',    getVal('b-lang')],
-    ['Frontend',     getVal('b-frontend')],
-    ['Backend',      getVal('b-backend')],
-    ['Database',     getVal('b-db')],
-    ['DevOps/Cloud', getVal('b-devops')],
-    ['Tools',        getVal('b-tools')],
-  ].filter(([, v]) => v);
+  const toList = text => text.split('\n').map(l => l.trim().replace(/^[-•*]\s*/,'')).filter(Boolean).map(l => `<li>${l}</li>`).join('');
 
-  // Experience
-  const expItems = [...document.querySelectorAll('.exp-item')].map(el => {
-    const id = el.id;
-    return {
-      title:   getVal(`${id}-title`),
-      company: getVal(`${id}-company`),
-      loc:     getVal(`${id}-loc`),
-      date:    getVal(`${id}-date`),
-      desc:    getVal(`${id}-desc`),
-    };
-  }).filter(e => e.title || e.company);
-
-  // Projects
-  const projItems = [...document.querySelectorAll('.proj-item')].map(el => {
-    const id = el.id;
-    return {
-      name: getVal(`${id}-name`),
-      tech: getVal(`${id}-tech`),
-      desc: getVal(`${id}-desc`),
-    };
-  }).filter(p => p.name);
-
-  const degree  = getVal('b-degree');
-  const college = getVal('b-college');
-  const year    = getVal('b-year');
-  const cgpa    = getVal('b-cgpa');
-  const summary = getVal('b-summary');
-  const certs   = getVal('b-certs');
-
-  const toList = text => text.split('\n')
-    .map(l => l.trim().replace(/^[-•*]\s*/, ''))
-    .filter(Boolean)
-    .map(l => `<li>${l}</li>`)
-    .join('');
-
-  let html = `
-    <h1>${name}</h1>
-    <div class="rp-contact">${contactParts.join(' &nbsp;|&nbsp; ')}</div>`;
-
-  if (summary) html += `<h2>Objective</h2><p>${summary}</p>`;
-
+  let html = `<h1>${name}</h1><div class="rp-contact">${contacts.join(' &nbsp;|&nbsp; ')}</div>`;
+  if (getVal('b-summary')) html += `<h2>Objective</h2><p>${getVal('b-summary')}</p>`;
   if (skillRows.length) {
     html += `<h2>Skills Summary</h2><div class="rp-skills-table">`;
-    skillRows.forEach(([cat, val]) => {
-      html += `<div class="rp-skill-row"><span class="rp-skill-cat">${cat}:</span><span>${val}</span></div>`;
-    });
+    skillRows.forEach(([cat,val]) => html += `<div class="rp-skill-row"><span class="rp-skill-cat">${cat}:</span><span>${val}</span></div>`);
     html += `</div>`;
   }
-
-  if (expItems.length) {
+  if (exps.length) {
     html += `<h2>Experience</h2>`;
-    expItems.forEach(e => {
+    exps.forEach(e => {
       html += `<h3>${e.title}${e.company ? ` — ${e.company}` : ''}</h3>`;
       html += `<div class="rp-meta">${[e.loc, e.date].filter(Boolean).join(' · ')}</div>`;
       if (e.desc) html += `<ul>${toList(e.desc)}</ul>`;
     });
   }
-
-  if (projItems.length) {
+  if (projs.length) {
     html += `<h2>Projects</h2>`;
-    projItems.forEach(p => {
+    projs.forEach(p => {
       html += `<h3>${p.name}${p.tech ? ` <span style="font-weight:400;color:#64748b">| ${p.tech}</span>` : ''}</h3>`;
       if (p.desc) html += `<ul>${toList(p.desc)}</ul>`;
     });
   }
-
-  if (degree || college) {
-    html += `<h2>Education</h2>`;
-    html += `<h3>${degree}</h3>`;
-    html += `<div class="rp-meta">${[college, year, cgpa ? `CGPA: ${cgpa}` : ''].filter(Boolean).join(' · ')}</div>`;
-  }
-
-  if (certs) {
-    html += `<h2>Certifications</h2><ul>`;
-    certs.split('\n').filter(Boolean).forEach(c => { html += `<li>${c.trim()}</li>`; });
-    html += `</ul>`;
-  }
-
+  const deg = getVal('b-degree'), col = getVal('b-college');
+  if (deg||col) { html += `<h2>Education</h2><h3>${deg}</h3><div class="rp-meta">${[col, getVal('b-year'), getVal('b-cgpa')?`CGPA: ${getVal('b-cgpa')}`:''].filter(Boolean).join(' · ')}</div>`; }
+  const certs = getVal('b-certs');
+  if (certs) { html += `<h2>Certifications</h2><ul>${certs.split('\n').filter(Boolean).map(c=>`<li>${c.trim()}</li>`).join('')}</ul>`; }
   return html;
 }
+
+const PRINT_CSS = `@page{margin:0;size:A4}*{box-sizing:border-box}body{font-family:Arial,sans-serif;max-width:780px;margin:0 auto;padding:48px 56px;color:#1e293b;font-size:13px;line-height:1.65;-webkit-print-color-adjust:exact;print-color-adjust:exact}h1{font-size:1.6rem;font-weight:700;margin-bottom:4px}.rp-contact{color:#475569;font-size:.8rem;margin-bottom:14px;line-height:1.8}h2{font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:4px;margin:20px 0 10px}h3{font-size:.9rem;font-weight:700;margin-bottom:2px}.rp-meta{color:#64748b;font-size:.78rem;margin-bottom:6px}ul{padding-left:18px;margin:5px 0}li{margin-bottom:3px;color:#334155}p{color:#334155;margin-bottom:8px}.rp-skills-table{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}.rp-skill-row{display:flex;gap:8px;font-size:.78rem}.rp-skill-cat{font-weight:700;color:#334155;min-width:90px}@media print{@page{margin:0}body{padding:48px 56px}}`;
 
 function generateAndDownload() {
   const html = buildResumeHTML();
   if (!html) return;
-
-  const name = getVal('b-name') || 'resume';
-  const fullHtml = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-<title>${name}</title>
-<style>
-  @page { margin: 0; size: A4; }
-  * { box-sizing: border-box; }
-  body {
-    font-family: Arial, sans-serif;
-    max-width: 780px; margin: 0 auto;
-    padding: 48px 56px;
-    color: #1e293b; font-size: 13px; line-height: 1.65;
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
-  h1{font-size:1.7rem;font-weight:700;color:#1e293b;margin-bottom:4px}
-  .rp-contact{color:#475569;font-size:.8rem;margin-bottom:16px;line-height:1.8}
-  h2{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:4px;margin:22px 0 10px}
-  h3{font-size:.95rem;font-weight:700;color:#1e293b;margin-bottom:2px}
-  .rp-meta{color:#64748b;font-size:.8rem;margin-bottom:6px}
-  ul{padding-left:18px;margin:5px 0}
-  li{margin-bottom:3px;color:#334155}
-  p{color:#334155;margin-bottom:8px}
-  .rp-skills-table{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
-  .rp-skill-row{display:flex;gap:8px;font-size:.8rem}
-  .rp-skill-cat{font-weight:700;color:#334155;min-width:90px}
-  @media print{
-    @page { margin: 0; }
-    body { padding: 48px 56px; }
-  }
-</style></head><body>${html}</body></html>`;
-
-  const win = window.open('', '_blank');
-  if (!win) { toast('Allow pop-ups to download the resume.', 'error'); return; }
-  win.document.write(fullHtml);
+  const name = getVal('b-name') || 'Resume';
+  const win  = window.open('', '_blank');
+  if (!win) { toast('Allow pop-ups.', 'error'); return; }
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${name}</title><style>${PRINT_CSS}</style></head><body>${html}</body></html>`);
   win.document.close();
-  setTimeout(() => {
-    win.print();
-    toast('💡 In print dialog → More Settings → uncheck "Headers and footers" → Save as PDF', 'info');
-  }, 400);
+  setTimeout(() => { win.print(); toast('💡 In print dialog → More Settings → uncheck "Headers and footers" → Save as PDF', 'info'); }, 400);
 }
 
 function printResume() {
   const content = $('resume-preview-content').innerHTML;
-  const win = window.open('', '_blank');
-  if (!win) { toast('Allow pop-ups to print.', 'error'); return; }
-  const name = getVal('b-name') || 'Resume';
-  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${name}</title>
-<style>
-  @page { margin: 0; size: A4; }
-  * { box-sizing: border-box; }
-  body {
-    font-family: Arial, sans-serif;
-    max-width: 780px; margin: 0 auto;
-    padding: 48px 56px;
-    color: #1e293b; font-size: 13px; line-height: 1.65;
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
-  }
-  h1{font-size:1.7rem;font-weight:700;margin-bottom:4px}
-  .rp-contact{color:#475569;font-size:.8rem;margin-bottom:16px;line-height:1.8}
-  h2{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#4f46e5;border-bottom:2px solid #e2e8f0;padding-bottom:4px;margin:22px 0 10px}
-  h3{font-size:.95rem;font-weight:700;margin-bottom:2px}
-  .rp-meta{color:#64748b;font-size:.8rem;margin-bottom:6px}
-  ul{padding-left:18px;margin:5px 0}
-  li{margin-bottom:3px;color:#334155}
-  p{color:#334155}
-  .rp-skills-table{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
-  .rp-skill-row{display:flex;gap:8px;font-size:.8rem}
-  .rp-skill-cat{font-weight:700;min-width:90px}
-  @media print { @page { margin: 0; } body { padding: 48px 56px; } }
-</style></head><body>${content}</body></html>`);
+  const name    = getVal('b-name') || 'Resume';
+  const win     = window.open('', '_blank');
+  if (!win) { toast('Allow pop-ups.', 'error'); return; }
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${name}</title><style>${PRINT_CSS}</style></head><body>${content}</body></html>`);
   win.document.close();
   setTimeout(() => win.print(), 400);
 }
-
