@@ -103,7 +103,7 @@ This section presents a comprehensive overview of the platform’s capabilities,
 ### 📊 Resume Analyzer
 The Resume Analyzer is the core module that processes resumes and evaluates them based on skills, experience, and formatting. It also compares resumes with job descriptions to identify gaps.
 
-![Resume Analyzer](./assests/img4.png)
+![Resume Analyzer](./assests/img3.png)
 
 ---
 
