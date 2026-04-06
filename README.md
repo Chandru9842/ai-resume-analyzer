@@ -89,36 +89,35 @@ This application solves the problem by providing an intelligent resume analysis 
 ### 🏠 Landing Page
 The landing page is designed with a modern, responsive UI that clearly communicates the purpose of the application — helping users optimize their resumes using AI-powered analysis. It provides a strong first impression with clear call-to-action buttons such as “Analyze Resume” and “Build ATS Resume,” guiding users into the workflow seamlessly.
 
-![Landing Page](./assests/img1.png)
+![Landing Page](./assets/img1.png)
 
 ---
 
 ### ⚙️ Features Overview
 This section presents a comprehensive overview of the platform’s capabilities, including ATS scoring, keyword analysis, and AI-powered tools that help users align their resumes with industry expectations.
 
-![Features](./assests/img3.png)
+![Features](./assets/img2.png)
 
 ---
 
 ### 📊 Resume Analyzer
 The Resume Analyzer is the core module that processes resumes and evaluates them based on skills, experience, and formatting. It also compares resumes with job descriptions to identify gaps.
 
-![Resume Analyzer](./assests/img2.png)
+![Resume Analyzer](./assets/img4.png)
 
 ---
 
+### 🧠 AI Bullet Point Rewriter
+This feature improves resume content by converting weak bullet points into strong, action-oriented statements with better clarity and impact.
 
-### 🧾 AI Bullet Point Rewriter
+![Bullet Rewriter](./assets/img5.png)
+
+---
+
+### 🧾 ATS Resume Builder
 The builder allows users to create structured, ATS-friendly resumes by entering their details in a guided format.
 
-![Resume Builder](./assests/img5.png)
-
----
-
-### 🔥 ATS Resume Builder
-This section highlights overall UI consistency, smooth navigation, and user-friendly design across the application.
-
-![Extra](./assests/img6.png)
+![Resume Builder](./assets/img6.png)
 
 ---
 
@@ -127,4 +126,3 @@ This section highlights overall UI consistency, smooth navigation, and user-frie
 **Chandru M**  
 🔗 GitHub: https://github.com/Chandru9842  
 🔗 LinkedIn: https://www.linkedin.com/in/chandru9842/
-see the image are coming down 
